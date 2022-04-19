@@ -32,7 +32,7 @@ npm install --save-dev puppeteer
 touch main.js
 ```
 
-エディタでmain.goを開いて下記の内容を入力します。
+エディタでmain.jsを開いて下記の内容を入力します。
 
 @[gist](https://gist.github.com/tatsuyasusukida/30e8aa97c8b59463e8f3cb25fa1cab8b?file=main.js)
 
