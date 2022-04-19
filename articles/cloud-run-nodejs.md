@@ -2,7 +2,7 @@
 title: "Node.jsでCloud Runにコンテナをデプロイする方法"
 emoji: "📦"
 type: "tech"
-topics: ["nodejs"]
+topics: ["nodejs", "cloudrun"]
 published: true
 ---
 
