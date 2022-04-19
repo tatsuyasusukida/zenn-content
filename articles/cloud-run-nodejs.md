@@ -8,7 +8,7 @@ published: true
 
 # この記事について
 
-この記事では [Buildpacks](https://buildpacks.io/) を使って作成したコンテナイメージを [Cloud Run](https://cloud.google.com/run) にデプロイする方法について紹介します。
+この記事では [Buildpacks](https://buildpacks.io/) を使って作成したNode.jsのコンテナイメージを [Cloud Run](https://cloud.google.com/run) にデプロイする方法について紹介します。
 
 
 
@@ -59,7 +59,8 @@ touch package.json
 4. pushはコンテナイメージをプッシュするコマンドです。
 5. deployはコンテナをCloud Runにデプロイするコマンドです。
 6. stagingはビルドからデプロイまでのコマンドをまとめたコマンドです。
-7. engines > nodeに明記することでBuildpacksでビルドする時のNode.jsのバージョンを指定することができます。
+7. deleteは後片付けのためのコマンドです。
+8. engines > nodeに明記することでBuildpacksでビルドする時のNode.jsのバージョンを指定することができます。
 
 
 
@@ -107,7 +108,7 @@ Webブラウザで先の手順で控えたService URLにアクセスして `{"ok
 npm run delete
 ```
 
-コマンドを実行すると「o you want to continue (Y/n)? 」と削除しても良いか尋ねられるのでエンターキーを入力します。
+コマンドを実行すると「Do you want to continue (Y/n)? 」と削除しても良いか尋ねられるのでエンターキーを入力します。
 
 ![コマンドを実行した直後の様子です。Do you want to continue (Y/n)? と確認メッセージが表示されます。](https://storage.googleapis.com/zenn-user-upload/497103e4c21b-20220419.png)
 
