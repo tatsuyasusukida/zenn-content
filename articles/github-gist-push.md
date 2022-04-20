@@ -41,15 +41,15 @@ touch main.js
 
 エディタで.envを開いて下記の内容を入力します。
 
-@[gist](https://gist.github.com/tatsuyasusukida/642aae4abfe889ee258c1489598f12ce?file=.env)
+@[gist](https://gist.github.com/tatsuyasusukida/96d0ae06718a5a2ad7f4e0709ca1a7aa?file=.env)
 
 エディタで.gitignoreを開いて下記の内容を入力します。
 
-@[gist](https://gist.github.com/tatsuyasusukida/642aae4abfe889ee258c1489598f12ce?file=.gitignore)
+@[gist](https://gist.github.com/tatsuyasusukida/96d0ae06718a5a2ad7f4e0709ca1a7aa?file=.gitignore)
 
 エディタでmain.jsを開いて下記の内容を入力します。
 
-@[gist](https://gist.github.com/tatsuyasusukida/642aae4abfe889ee258c1489598f12ce?file=main.js)
+@[gist](https://gist.github.com/tatsuyasusukida/96d0ae06718a5a2ad7f4e0709ca1a7aa?file=main.js)
 
 コードを実行するには下記のコマンドを実行します。
 （この記事ではソースコードをプッシュすることが目的なのでコードの実行は任意です）
