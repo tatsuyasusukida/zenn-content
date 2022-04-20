@@ -21,7 +21,7 @@ published: true
 
 # 同期バージョンの関数を使う
 
-https://github.com/tatsuyasusukida/nodejs-async-await/blob/main/case-01-sync.js
+@[gist](https://gist.github.com/tatsuyasusukida/5f0850d75be41f922ae6c4e74ee86acc?file=case-01-sync.js)
 
 初っ端からタイトルに偽りありという感じが否めないですが(笑)
 `fs.readFileSync` と `fs.readFile` のように関数によっては同期バージョンと非同期バージョンの両方が用意されていることがあるので、処理速度がそれほど重要ではない場面などでは同期バージョンを使うことで面倒な非同期処理を避けることができます。
@@ -38,7 +38,7 @@ https://github.com/tatsuyasusukida/nodejs-async-await/blob/main/case-01-sync.js
 
 # コールバック関数を使う
 
-https://github.com/tatsuyasusukida/nodejs-async-await/blob/main/case-02-callback.js
+@[gist](https://gist.github.com/tatsuyasusukida/5f0850d75be41f922ae6c4e74ee86acc?file=case-02-callback.js)
 
 関数の引数（多くの場合は最後の引数）としてコールバック関数を指定し、処理が完了した時に関数側から呼び出してもらう方法です。コールバック関数の最初に引数である `err` はエラーの発生を伝えるための引数であり、処理の成功時はnullが渡され、処理の失敗時は `new Error('error message')` のようなエラーオブジェクトが渡されます。
 
@@ -54,7 +54,7 @@ Node.jsで初期の頃から使わてきた方法なので、運悪く古いバ�
 
 # ストリームを使う
 
-https://github.com/tatsuyasusukida/nodejs-async-await/blob/main/case-03-stream.js
+@[gist](https://gist.github.com/tatsuyasusukida/5f0850d75be41f922ae6c4e74ee86acc?file=case-03-stream.js)
 
 `fs.createReadStream` 関数を使うなどしてストリームを作成し、dataやerrorイベントなどのハンドラを登録する方法です。endやfinishなどのイベントにハンドラを登録することで完了を検出することができます。
 
@@ -70,7 +70,7 @@ https://github.com/tatsuyasusukida/nodejs-async-await/blob/main/case-03-stream.j
 
 # Promiseを使う
 
-https://github.com/tatsuyasusukida/nodejs-async-await/blob/main/case-04-promise.js
+@[gist](https://gist.github.com/tatsuyasusukida/5f0850d75be41f922ae6c4e74ee86acc?file=case-04-promise.js)
 
 Promiseについては [JavaScript Promiseの本](https://azu.github.io/promises-book/) という素晴らしいドキュメントがあるので説明を割愛します。
 
@@ -86,7 +86,7 @@ async/awaitに比べて読みにくい。
 
 # async/awaitを使う
 
-https://github.com/tatsuyasusukida/nodejs-async-await/blob/main/case-05-async.js
+@[gist](https://gist.github.com/tatsuyasusukida/5f0850d75be41f922ae6c4e74ee86acc?file=case-05-async.js)
 
 `fsPromises.readFile` のようにPromiseを返す関数の呼び出しの前に `await` キーワードを書くことによって `Promise#then` の呼び出しを省略することができます。
 
@@ -102,7 +102,7 @@ https://github.com/tatsuyasusukida/nodejs-async-await/blob/main/case-05-async.js
 
 # RxJS（Observable）を使う
 
-https://github.com/tatsuyasusukida/nodejs-async-await/blob/main/case-06-rxjs.js
+@[gist](https://gist.github.com/tatsuyasusukida/5f0850d75be41f922ae6c4e74ee86acc?file=case-06-rxjs.js)
 
 [RxJS](https://rxjs.dev/)はObservableという概念を中心として非同期処理を宣言的に書くことができるライブラリです。PromiseとObservableは似ていますが下記2つの点が異なっています。
 
@@ -111,7 +111,7 @@ https://github.com/tatsuyasusukida/nodejs-async-await/blob/main/case-06-rxjs.js
 
 ## メリット
 
-柔軟性が極めて高い、[Operators](https://rxjs.dev/guide/operators) を利用すると例えば「処理が失敗したら6秒間待ってから再度実行する」ような処理を宣言的に書ける（[RxJSのretryWhenのページ](https://www.learnrxjs.io/learn-rxjs/operators/error_handling/retrywhen#examples)にソースコードのサンプルがあります）。
+柔軟性が極めて高い、[Operators](https://rxjs.dev/guide/operators) を利用すると例えば「エラーが失敗したら6秒間待ってから再度実行する」ような処理を宣言的に書ける（[RxJSのretryWhenのページ](https://www.learnrxjs.io/learn-rxjs/operators/error_handling/retrywhen#examples)にソースコードのサンプルがあります）。
 
 ## デメリット
 

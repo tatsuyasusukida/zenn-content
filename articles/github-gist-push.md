@@ -134,3 +134,8 @@ git push gist main
 ちなみに別の記事で [GitHubのGitレポジトリにソースコードをプッシュする方法](https://zenn.dev/tatsuyasusukida/articles/github-git-push) について紹介しているので興味がありましたらご覧いただければ幸いです。
 最後まで読んでいただきありがとうございました！
 
+
+
+# 追記
+
+[Node.jsで非同期処理を扱う6通りの方法](https://zenn.dev/tatsuyasusukida/articles/nodejs-async-await) の記事を書くときに早速GitHubのソースコード埋め込み機能を使ってみましたが、スクロールしないとソースコード全体を見ることができない感じだったので、今後はGistとGitHubをケースバイケースで併用しようと思いました。
