@@ -1,6 +1,6 @@
 ---
 title: "Puppeteerでスクリーンショットを撮影する方法"
-emoji: "📦"
+emoji: "📷"
 type: "tech"
 topics: ["nodejs", "puppeteer"]
 published: true
@@ -27,6 +27,7 @@ published: true
 
 ```shell
 mkdir column-puppeteer-screenshot
+cd column-puppeteer-screenshot
 npm init -y
 npm install --save-dev puppeteer
 touch main.js

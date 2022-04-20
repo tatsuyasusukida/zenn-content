@@ -26,7 +26,7 @@ published: true
 # アプリケーションの登録
 
 Auth0を利用するには事前にアプリケーションを登録する必要があります。
-アプリケーションを登録するにはまず [Auth0のWebサイト](https://auth0.com/) のWebサイトにアクセスしてログインします。
+アプリケーションを登録するにはまず [Auth0のWebサイト](https://auth0.com/) にアクセスしてログインします。
 なお、Auth0のアカウントを持っていない場合は [サインアップ](https://auth0.com/signup) ページから利用登録をします。
 
 ![Auth0のトップページです。ページの右上にLoginリンクがあります。](/images/articles/auth0-webapp/registration-01.png)
@@ -87,6 +87,7 @@ openssl rand -hex 32
 
 ```shell
 mkdir column-auth0-webapp
+cd column-auth0-webapp
 npm init -y
 npm install --save dotenv express express-openid-connect
 touch main.js
@@ -138,6 +139,6 @@ Googleアカウントを利用するなどしてログインするとページ�
 
 # おわりに
 
-Auth0はWebアプリのユーザー認証だけではなく、ネイティブアプリやシングルページのWebアプリケーションがバックエンドのAPIにアクセスするための認可のしくみを実装するためにも利用することができます。
-個人的にAuth0は [Cloud Run](https://cloud.google.com/run) と同じくらい素晴らしいサービスだと思っているので、この記事が利用する方の一助となれば幸いです。
+Auth0はWebアプリのユーザー認証だけではなく、ネイティブアプリやシングルページWebアプリケーションがバックエンドのAPIにアクセスするための認可のしくみを実装するためにも利用することができます。
+詳しい手順については [別の記事](https://zenn.dev/tatsuyasusukida/articles/auth0-webapi) で紹介していますので興味がありましたらご覧いただければ幸いです。
 最後まで読んでいただきありがとうございました！
