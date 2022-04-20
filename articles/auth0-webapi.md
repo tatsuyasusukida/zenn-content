@@ -132,7 +132,7 @@ JavaScriptのQuick Startのページが表示されたら「Configure credential
 
 入力が終わったらページの最後の方にある「Save Changes」ボタンをクリックします。
 
-![Auth0のアプリケーションの設定ページの最後の方にある「Save Changes」ボタンです。](/images/articles/auth0-webapi/app-setting-03.png)
+![Auth0のアプリケーションの設定ページの最後の方にある「Save Changes」ボタンです。](/images/articles/auth0-webapi/app-setting-04.png)
 
 以上でAuth0のAPIとアプリケーションの登録が完了しました。
 あとは楽しいコーディングだけです。
