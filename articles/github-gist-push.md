@@ -30,8 +30,8 @@ Zennで技術ブログを書くためにGitHub Gistを使いはじめたので�
 ターミナルで下記のコマンドを実行してコーディングの準備をします。
 
 ```shell
-mkdir column-gist-push
-cd column-gist-push
+mkdir column-github-gist-push
+cd column-github-gist-push
 npm init -y
 npm install --save dotenv
 touch .gitignore
@@ -64,23 +64,23 @@ node -r dotenv/config main.js
 
 Gist（GitHub Gistのレポジトリ）を作成するにはWebブラウザで [GitHub Gist](https://gist.github.com/) のページへアクセスします。ログインしていない場合はページ右上に「Sign in」リンクが表示されるのでクリックしてログインします。
 
-![GitHub Gistのトップページです。Gist descriptionやfilename including extensionの入力部に加え、Add fileボタンやCreate secret gistボタンを備えています。](/images/articles/gist-push/gist-01.png)
+![GitHub Gistのトップページです。Gist descriptionやfilename including extensionの入力部に加え、Add fileボタンやCreate secret gistボタンを備えています。](/images/articles/github-gist-push/gist-01.png)
 
 GitHubとは異なり、GitHub Gistでは空のレポジトリを作成することができない様子なのでとりあえず.gitignoreの内容をコピー＆ペーストしてGistを作成します。この際、Gist descriptionにコメント（例：Gist Push Example）を入力しておくと後から探すときに便利です。
 
-![Gistを作成する直前の様子です。Gist descriptionに「Git Push Example」と入力し、filename including extensionsに「.gitignore」と入力し、ファイルの内容を入力するテキストエリアに「/node_modules/」と入力しています。](/images/articles/gist-push/gist-02.png)
+![Gistを作成する直前の様子です。Gist descriptionに「Git Push Example」と入力し、filename including extensionsに「.gitignore」と入力し、ファイルの内容を入力するテキストエリアに「/node_modules/」と入力しています。](/images/articles/github-gist-push/gist-02.png)
 
 ページ右下のCreate secret gistボタンの隣にある「▼」ボタンをクリックして表示されるドロップダウンメニューから「Create public gist」を選んでクリックするとCreate secret gistボタンがCreate public gistボタンに変化します。
 
-![Create public gistを選んでいる様子です。ドロップダウンメニューにはCreate secret gistとCreate public gistの2つが含まれています。](/images/articles/gist-push/gist-03.png)
+![Create public gistを選んでいる様子です。ドロップダウンメニューにはCreate secret gistとCreate public gistの2つが含まれています。](/images/articles/github-gist-push/gist-03.png)
 
 「Create public gist」ボタンをクリックするとGistが作成され、Gistのページが表示されます。
 
-![Gistのページです。EditボタンやDeleteボタンを備えています。](/images/articles/gist-push/gist-04.png)
+![Gistのページです。EditボタンやDeleteボタンを備えています。](/images/articles/github-gist-push/gist-04.png)
 
 EditボタンやDeleteボタンの下あたりにある「Embed ▼」ボタンをクリックして表示されるドロップダウンメニューの中から「Clone via SSH」を選んでクリックします。
 
-![Embedボタンをクリックしてドロップダウンメニューが表示されている様子です。ドロップダウンメニューにはClone via SSHが含まれています。](/images/articles/gist-push/gist-05.png)
+![Embedボタンをクリックしてドロップダウンメニューが表示されている様子です。ドロップダウンメニューにはClone via SSHが含まれています。](/images/articles/github-gist-push/gist-05.png)
 
 Clone via SSH ▼ボタンの隣に「git@」から始まるGistへアクセスするための情報が表示されるので隣にあるコピーボタンを利用するなどしてコピーします。
 
@@ -100,7 +100,7 @@ git log
 
 `git log` の実行結果に「HEAD -> main」が含まれていることを確認します。
 
-![ターミナルのスクリーンショットです。git log の出力にHEAD -> mainが含まれています。](/images/articles/gist-push/git-01.png)
+![ターミナルのスクリーンショットです。git log の出力にHEAD -> mainが含まれています。](/images/articles/github-gist-push/git-01.png)
 
 
 
@@ -115,7 +115,7 @@ git commit -m "Actual initial commit"
 git push gist main
 ```
 
-![ターミナルのスクリーンショットです。git push gist mainを実行するとmain -> mainなどプッシュされていることを伝えるメッセージが表示されています。](/images/articles/gist-push/push-01.png)
+![ターミナルのスクリーンショットです。git push gist mainを実行するとmain -> mainなどプッシュされていることを伝えるメッセージが表示されています。](/images/articles/github-gist-push/push-01.png)
 
 
 
@@ -125,7 +125,7 @@ git push gist main
 
 理想を言えばGitHubのGitレポジトリからソースコードを読み込めれば嬉しいのですが、Zennではできないみたいなので仕方ありません...
 
-![ZennのMarkdown記法一覧のページです。「2022/04〜より、GitHub上のソースコードファイルを埋め込めるようになりました。」との記載があります。](/images/articles/gist-push/conclusion-01.png)
+![ZennのMarkdown記法一覧のページです。「2022/04〜より、GitHub上のソースコードファイルを埋め込めるようになりました。」との記載があります。](/images/articles/github-gist-push/conclusion-01.png)
 
 いや、できるのかよ普通に(笑)
 やるじゃん [catnose](https://zenn.dev/catnose99) さん！行の指定までできるとか神！
