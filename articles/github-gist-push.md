@@ -131,6 +131,6 @@ git push gist main
 やるじゃん [catnose](https://zenn.dev/catnose99) さん！行の指定までできるとか神！
 そうなるとGistを使うことは当分無さそうなのでこの記事の存在意義が危ぶまれますが、この記事を書いたことでZennの新機能に気付けて良かったです。
 
-ちなみに別の記事で [GitHubのGitレポジトリにソースコードをプッシュする方法](https://zenn.dev/tatsuyasusukida/articles/github-gist-push) について紹介しているので興味がありましたらご覧いただければ幸いです。
+ちなみに別の記事で [GitHubのGitレポジトリにソースコードをプッシュする方法](https://zenn.dev/tatsuyasusukida/articles/github-git-push) について紹介しているので興味がありましたらご覧いただければ幸いです。
 最後まで読んでいただきありがとうございました！
 
