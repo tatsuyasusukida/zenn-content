@@ -2,7 +2,7 @@
 title: "GoでCloud Runにコンテナをデプロイする方法"
 emoji: "📦"
 type: "tech"
-topics: ["nodejs", "go"]
+topics: ["go", "cloudrun"]
 published: true
 ---
 
