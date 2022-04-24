@@ -6,7 +6,7 @@ topics: ["nodejs", "cloudrun"]
 published: true
 ---
 
-# はじめに
+# この記事について
 
 この記事ではCloud Runで実行されるNode.js＋SequelizeのコードからCloud SQLへ接続する方法について紹介します。
 
