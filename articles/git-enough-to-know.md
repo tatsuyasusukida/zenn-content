@@ -168,6 +168,7 @@ git merge origin/main
 
 # 関連記事
 
+- [Gitで複数のコミットを後から1つにまとめる方法](https://zenn.dev/tatsuyasusukida/articles/git-rebase-interfactive)
 - [GitHubのGitレポジトリにソースコードをプッシュする方法](https://zenn.dev/tatsuyasusukida/articles/github-git-push)
 - [GistのGitレポジトリにソースコードをプッシュする方法](https://zenn.dev/tatsuyasusukida/articles/github-gist-push)
 
