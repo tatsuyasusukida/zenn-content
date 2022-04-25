@@ -170,3 +170,19 @@ git merge origin/main
 
 - [GitHubのGitレポジトリにソースコードをプッシュする方法](https://zenn.dev/tatsuyasusukida/articles/github-git-push)
 - [GistのGitレポジトリにソースコードをプッシュする方法](https://zenn.dev/tatsuyasusukida/articles/github-gist-push)
+
+
+
+# 追記
+
+変更点を表示する方法について言及していないと気づいたので追記します。`git add .` コマンドを実行する前の場合は下記のコマンドを実行します。
+
+```shell
+git diff
+```
+
+`git add .` コマンドを実行した後の場合は下記のコマンドを実行します。
+
+```shell
+git diff --cached
+```
