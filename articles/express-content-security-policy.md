@@ -10,7 +10,7 @@ published: true
 
 # この記事について
 
-この記事では [Express](https://expressjs.com/) のセキュリティ強化ミドルウェアである [Helmet](https://helmetjs.github.io/) を使って [Content Security Policy](https://developer.mozilla.org/docs/Web/HTTP/CSP)（以下「CSP」と呼びます）を設定する方法について紹介します。題材として [GoogleタグマネージャーのCSP](https://developers.google.com/tag-manager/web/csp)を参考にしてGoogle Analyticsを利用できるCSPを設定します。
+この記事では [Express](https://expressjs.com/) のセキュリティ強化ミドルウェアである [Helmet](https://helmetjs.github.io/) を使って [Content Security Policy](https://developer.mozilla.org/docs/Web/HTTP/CSP)（以下「CSP」と呼びます）を設定する方法について紹介します。題材として [Google Tag ManagerのCSP](https://developers.google.com/tag-manager/web/csp)を参考にしてGoogle Analyticsを利用できるCSPを設定します。
 
 
 
@@ -45,8 +45,8 @@ touch main.js
 
 1. helmetミドルウェアを登録する時にcontentSecurityPolicyオプションを使ってCSPを設定しています。
 2. directivesをお忘れなく（私はよく忘れます）。デフォルトの設定内容についてはnode_modules/helmet/dist/cjs/index.jsなどからコピー＆ペーストすることができます。
-3. img-srcにGoogle AnalyticsのURLを追加しています。
-4. script-srcにGoogle AnalyticsのURL2件を追加しています。
+3. img-srcにGoogle AnalyticsとGoogle Tag ManagerのURLを追加しています。
+4. script-srcにGoogle AnalyticsとGoogle Tag ManagerのURLを追加しています。
 5. connect-srcにGoogle AnalyticsのURLを追加しています。
 
 
@@ -77,7 +77,7 @@ curl -v http://localhost:3000/
 > 
 * Mark bundle as not supporting multiuse
 < HTTP/1.1 200 OK
-< Content-Security-Policy: default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data: https://www.google-analytics.com;object-src 'none';script-src 'self' https://www.google-analytics.com https://ssl.google-analytics.com;script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests;connect-src 'self' https://www.google-analytics.com
+< Content-Security-Policy: default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com;object-src 'none';script-src 'self' https://www.google-analytics.com https://ssl.google-analytics.com https://www.googletagmanager.com;script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests;connect-src 'self' https://www.google-analytics.com
 < Cross-Origin-Embedder-Policy: require-corp
 < Cross-Origin-Opener-Policy: same-origin
 < Cross-Origin-Resource-Policy: same-origin
@@ -94,7 +94,7 @@ curl -v http://localhost:3000/
 < Content-Type: application/json; charset=utf-8
 < Content-Length: 11
 < ETag: W/"b-Ai2R8hgEarLmHKwesT1qcY913ys"
-< Date: Wed, 27 Apr 2022 02:15:18 GMT
+< Date: Wed, 27 Apr 2022 09:42:33 GMT
 < Connection: keep-alive
 < Keep-Alive: timeout=5
 < 
@@ -108,7 +108,7 @@ HTTPレスポンスに含まれるContent-Security-Policyヘッダーを見て�
 
 # おわりに
 
-セキュリティを強化する上でContent-Security-Poclicyはとても有用ですが、設定が適切でなければ画像の読み込みに失敗したり、JavaScriptの実行が失敗したりとWebページの不具合につながります。Helmetは後付けで追加も可能ですが、早期に追加してCSPなどが有効な状態で開発を進めた方がバグを早めに発見できて良いと考えています。この記事がCSPでGoogle Analyticsなどが動かなくて困っている方の役に立てば幸いです（ちなみにGoogle Analyticsが機能するためにはnonceの設定も行う必要があります）。最後までお読みいただきありがとうございました！
+セキュリティを強化する上でContent-Security-Poclicyはとても有用ですが、設定が適切でなければ画像の読み込みに失敗したり、JavaScriptの実行が失敗したりとWebページの不具合につながります。Helmetは後付けで追加も可能ですが、早期に追加してCSPなどが有効な状態で開発を進めた方がバグを早めに発見できて良いと考えています。この記事がCSPでGoogle Analyticsなどが動かなくて困っている方の役に立てば幸いです（ちなみにGoogle Analyticsが機能するためにはnonceの設定も行う必要があります、詳しくは関連記事をご参照ください）。最後までお読みいただきありがとうございました！
 
 
 
