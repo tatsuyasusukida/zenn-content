@@ -124,3 +124,10 @@ async/awaitに比べて読みにくい。
 Node.jsでは非同期処理を扱う方法が複数あります。
 どの方法を選べば良いかを決める時などにこの記事が参考になれば幸いです。
 最後までお読みいただきありがとうございました！
+
+
+
+# 関連記事
+
+- [Node.jsでシリアル通信などの待ち行列を実装する方法](https://zenn.dev/tatsuyasusukida/articles/nodejs-serialport-queue)
+- [Node.jsでSHA-256のハッシュ値を計算する2通りの方法](https://zenn.dev/tatsuyasusukida/articles/nodejs-sha256-hash)
