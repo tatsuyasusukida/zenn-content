@@ -152,11 +152,15 @@ touch .env
 touch main.js
 ```
 
+## .env
+
 エディタで.envを開いて先の手順で控えた内容を入力します。
 
 @[gist](https://gist.github.com/tatsuyasusukida/099b4ee0a22bb3d100f7134f4e260320?file=.env.example)
 
-続いてエディタでmain.jsを開いて下記の内容を入力します。
+## main.js
+
+エディタでmain.jsを開いて下記の内容を入力します。
 
 @[gist](https://gist.github.com/tatsuyasusukida/099b4ee0a22bb3d100f7134f4e260320?file=main.js)
 
@@ -188,15 +192,21 @@ touch index.html
 touch main.js
 ```
 
+## auth_config.json
+
 エディタでauth_config.jsonを開いて先の手順で控えた内容を入力します。
 
 @[gist](https://gist.github.com/tatsuyasusukida/ce1b2533d3fbd38b5e3582fe0217a049?file=auth_config.json.example)
 
-続いてエディタでindex.htmlを開いて下記の内容を入力します。
+## index.html
+
+エディタでindex.htmlを開いて下記の内容を入力します。
 
 @[gist](https://gist.github.com/tatsuyasusukida/ce1b2533d3fbd38b5e3582fe0217a049?file=index.html)
 
-続いてエディタでmain.jsを開いて下記の内容を入力します。
+## main.js
+
+エディタでmain.jsを開いて下記の内容を入力します。
 
 @[gist](https://gist.github.com/tatsuyasusukida/ce1b2533d3fbd38b5e3582fe0217a049?file=main.js)
 
