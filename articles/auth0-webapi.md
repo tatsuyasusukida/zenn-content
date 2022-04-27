@@ -147,7 +147,7 @@ JavaScriptのQuick Startのページが表示されたら「Configure credential
 mkdir column-auth0-webapi
 cd column-auth0-webapi
 npm init -y
-npm install --save dotenv express express-jwt express-jwt-authz jwks-rsa
+npm install --save cors dotenv express express-jwt@6 express-jwt-authz jwks-rsa
 touch .env
 touch main.js
 ```
@@ -263,3 +263,24 @@ Googleアカウントを利用するなどしてログインするとアプリ�
 Auth0はAPI認可だけではなく、Webアプリにユーザー認証を実装するためにも利用することができます。
 詳しい手順については [別の記事](https://zenn.dev/tatsuyasusukida/articles/auth0-webapp) で紹介していますので興味がありましたらご覧いただければ幸いです。
 最後までお読みいただきありがとうございました。
+
+
+
+# 改訂記録
+
+## 2022年4月27日
+
+1. `npm install cors` が抜けていたので追加しました。
+2. `npm install express-jwt` を実行するとメジャーバージョンが7のnpmパッケージがインストールされてエラーが発生するのでインストール時に@6を末尾に追加してバージョンを指定しました。
+
+変更前のnpm installコマンドは下記の通りです。
+
+```
+npm install --save dotenv express express-jwt express-jwt-authz jwks-rsa
+```
+
+変更後のnpm installコマンドは下記の通りです。
+
+```
+npm install --save cors dotenv express express-jwt@6 express-jwt-authz jwks-rsa
+```
