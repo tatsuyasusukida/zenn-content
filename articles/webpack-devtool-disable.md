@@ -84,3 +84,9 @@ console.log('This is app.js')
 # おわりに
 
 webpackのDevtoolやライブリロードは便利ですがContent Security Policyなどによるコンソールのエラー表示が煩わしく感じるので基本的には無効にしています。便利な機能が使えないのでかなり損しているかも知れないのでwebpackの超便利な機能などをご存知の方がいらっしゃいましたらお気軽にコメントをいただければ幸いです。最後までお読みいただきありがとうございました。
+
+
+
+# 関連記事
+
+- [webpackで遅延読み込みを使って大きなファイルを小分けにする方法](https://zenn.dev/tatsuyasusukida/articles/webpack-devtool-disable)
