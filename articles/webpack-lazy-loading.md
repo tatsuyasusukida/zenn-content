@@ -152,3 +152,4 @@ WebページによってはwebpackのJavaScriptコードの大部分を必要と
 # 関連記事
 
 - [webpackでDevtoolやライブリロードなどをすべて無効にする方法](https://zenn.dev/tatsuyasusukida/articles/webpack-devtool-disable)
+- [webpackでVueのテンプレートエンジンとしてPugを使う方法](https://zenn.dev/tatsuyasusukida/articles/webpack-vue-pug)
