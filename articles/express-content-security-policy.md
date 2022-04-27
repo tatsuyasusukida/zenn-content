@@ -1,5 +1,5 @@
 ---
-title: "ExpressでHelmet.jsを使ってContent Security Policyを設定する方法"
+title: "ExpressでHelmetを使ってContent Security Policyを設定する方法"
 emoji: "🔒"
 type: "tech"
 topics: ["nodejs", "express", "security"]
@@ -10,7 +10,7 @@ published: true
 
 # この記事について
 
-この記事では [Express](https://expressjs.com/) のセキュリティ強化ミドルウェアである [Helmet.js](https://helmetjs.github.io/) を使って [Content Security Policy](https://developer.mozilla.org/docs/Web/HTTP/CSP)（以下「CSP」と呼びます）を設定する方法について紹介します。題材として [GoogleタグマネージャーのCSP](https://developers.google.com/tag-manager/web/csp)を参考にしてGoogle Analyticsを利用できるCSPを設定します。
+この記事では [Express](https://expressjs.com/) のセキュリティ強化ミドルウェアである [Helmet](https://helmetjs.github.io/) を使って [Content Security Policy](https://developer.mozilla.org/docs/Web/HTTP/CSP)（以下「CSP」と呼びます）を設定する方法について紹介します。題材として [GoogleタグマネージャーのCSP](https://developers.google.com/tag-manager/web/csp)を参考にしてGoogle Analyticsを利用できるCSPを設定します。
 
 
 
@@ -108,4 +108,10 @@ HTTPレスポンスに含まれるContent-Security-Policyヘッダーを見て�
 
 # おわりに
 
-セキュリティを強化する上でContent-Security-Poclicyはとても有用ですが、設定が適切でなければ画像の読み込みに失敗したり、JavaScriptの実行が失敗したりとWebページの不具合につながります。Helmet.jsは後付けで追加も可能ですが、早期に追加してCSPなどが有効な状態で開発を進めた方がバグを早めに発見できて良いと考えています。この記事がCSPでGoogle Analyticsなどが動かなくて困っている方の役に立てば幸いです（ちなみにGoogle Analyticsが機能するためにはnonceの設定も行う必要があります）。最後までお読みいただきありがとうございました！
+セキュリティを強化する上でContent-Security-Poclicyはとても有用ですが、設定が適切でなければ画像の読み込みに失敗したり、JavaScriptの実行が失敗したりとWebページの不具合につながります。Helmetは後付けで追加も可能ですが、早期に追加してCSPなどが有効な状態で開発を進めた方がバグを早めに発見できて良いと考えています。この記事がCSPでGoogle Analyticsなどが動かなくて困っている方の役に立てば幸いです（ちなみにGoogle Analyticsが機能するためにはnonceの設定も行う必要があります）。最後までお読みいただきありがとうございました！
+
+
+
+# 関連記事
+
+- [ExpressでHelmetを使うとGoogle Analyticsが動かなくなって困った話](https://zenn.dev/tatsuyasusukida/articles/express-helmet-google-analytics)
