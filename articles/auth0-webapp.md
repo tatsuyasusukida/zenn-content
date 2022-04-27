@@ -142,3 +142,10 @@ Googleアカウントを利用するなどしてログインするとページ�
 Auth0はWebアプリのユーザー認証だけではなく、ネイティブアプリやシングルページWebアプリケーションがバックエンドのAPIにアクセスするための認可のしくみを実装するためにも利用することができます。
 詳しい手順については [別の記事](https://zenn.dev/tatsuyasusukida/articles/auth0-webapi) で紹介していますので興味がありましたらご覧いただければ幸いです。
 最後まで読んでいただきありがとうございました！
+
+
+
+# 関連記事
+
+- [Node.jsでAuth0を利用してAPI認可を実装する](https://zenn.dev/tatsuyasusukida/articles/auth0-webapi)
+- [Auth0で1つのアクセストークンを使って複数のAPIにアクセスする方法](https://zenn.dev/tatsuyasusukida/articles/auth0-multiple-api)

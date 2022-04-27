@@ -294,3 +294,10 @@ npm install --save dotenv express express-jwt express-jwt-authz jwks-rsa
 ```
 npm install --save cors dotenv express express-jwt@6 express-jwt-authz jwks-rsa
 ```
+
+
+
+# 関連記事
+
+- [Auth0で1つのアクセストークンを使って複数のAPIにアクセスする方法](https://zenn.dev/tatsuyasusukida/articles/auth0-multiple-api)
+- [Node.jsでAuth0を利用してユーザー認証を実装する](https://zenn.dev/tatsuyasusukida/articles/auth0-webapp)
