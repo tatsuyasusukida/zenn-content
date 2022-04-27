@@ -21,7 +21,7 @@ published: true
 1. コーディング
 2. 動作確認
 
-コーディングについては [この記事のGistページ]() からソースコードをダウンロード可能です。
+ソースコードについては [この記事のGistページ](https://gist.github.com/tatsuyasusukida/c6e704519e451933e65a80dadc345d2c) からダウンロード可能です。
 
 
 
