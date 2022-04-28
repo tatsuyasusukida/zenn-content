@@ -111,4 +111,4 @@ HTMLのソースコードを読むのはともかくとして書くのはEmmet�
 
 - [webpackでDevtoolやライブリロードなどをすべて無効にする方法](https://zenn.dev/tatsuyasusukida/articles/webpack-devtool-disable)
 - [webpackで遅延読み込みを使って大きなファイルを小分けにする方法](https://zenn.dev/tatsuyasusukida/articles/webpack-devtool-disable)
-
+- [webpackでBabelを使ってモダンなJavaScriptコードをレガシーブラウザで動かす方法](https://zenn.dev/tatsuyasusukida/articles/webpack-babel-loader)

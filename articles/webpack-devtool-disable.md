@@ -91,3 +91,4 @@ webpackのDevtoolやライブリロードは便利ですがContent Security Poli
 
 - [webpackで遅延読み込みを使って大きなファイルを小分けにする方法](https://zenn.dev/tatsuyasusukida/articles/webpack-devtool-disable)
 - [webpackでVueのテンプレートエンジンとしてPugを使う方法](https://zenn.dev/tatsuyasusukida/articles/webpack-vue-pug)
+- [webpackでBabelを使ってモダンなJavaScriptコードをレガシーブラウザで動かす方法](https://zenn.dev/tatsuyasusukida/articles/webpack-babel-loader)
