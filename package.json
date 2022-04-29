@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "zenn preview",
+    "start": "zenn preview --open",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
