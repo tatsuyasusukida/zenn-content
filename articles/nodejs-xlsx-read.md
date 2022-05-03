@@ -52,7 +52,7 @@ touch main.js
 
 エディタでmain.jsを開いて下記の内容を入力します。
 
-[クリックしてmain.jsへ移動](#file-main-js)
+@[gist](https://gist.github.com/tatsuyasusukida/230875ad58c5e2cc6d0fe2b206b19939?file=main.js)
 
 ポイントを下記に示します。
 
