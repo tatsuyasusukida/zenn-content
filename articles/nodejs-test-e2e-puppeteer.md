@@ -10,8 +10,9 @@ published: true
 
 この記事ではNode.jsからGoogle ChromeをコントロールするためのAPIを提供する [Puppetter](https://pptr.dev/) を使ってWebアプリのUIテスト（E2Eテスト）を自動化する方法について紹介します。
 
-- [ソースコード](https://gist.github.com/tatsuyasusukida/48676c28011264b0a3a4e73b5f4ba6c6)
+- [ソースコード](https://gist.github.com/tatsuyasusukida/48676c28011264b0a3a4e73b5f4ba6c6#file-index-html)
 - [動作確認用デモ](https://gist.githack.com/tatsuyasusukida/48676c28011264b0a3a4e73b5f4ba6c6/raw/index.html)
+- [English version / 英語版](https://gist.github.com/tatsuyasusukida/48676c28011264b0a3a4e73b5f4ba6c6)
 - [動画版](https://www.youtube.com/watch?v=mzy9JFM5I8Y)
 
 https://www.youtube.com/watch?v=mzy9JFM5I8Y
