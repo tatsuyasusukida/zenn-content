@@ -1,5 +1,5 @@
 ---
-title: "Node.jsでPuppeteerを使ってWebアプリのUIテストを自動化する方法【動画版あり】"
+title: "Node.jsで標準ライブラリだけを使って単体テストを行う方法【動画版あり】"
 emoji: "🙆‍♂️"
 type: "tech"
 topics: ["nodejs", "test"]
