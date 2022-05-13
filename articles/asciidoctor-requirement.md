@@ -8,24 +8,25 @@ published: true
 
 
 
-# この記事について
+## この記事について
 
 この記事では [Asciidoctor](https://asciidoctor.org/) が出力するHTMLファイルの体裁をCSSを使って仕様書らしく整える方法について紹介します。
 
 
 
-# おおまかな手順
+## おおまかな手順
 
 おおまかな手順を下記に示します。
 
 1. Asciidoctorのインストール
-2. コーディング
-3. HTMLファイルの出力
-4. 動作確認
+2. コーディングの準備
+3. コーディング
+4. HTMLファイルの出力
+5. 動作確認
 
 
 
-# Asciidoctorのインストール
+## Asciidoctorのインストール
 
 Asciidoctorをインストールする手順については [AsciidoctorのInstallationセクション](https://asciidoctor.org/#installation) で詳しく説明されています。macOSの場合は下記のコマンドでインストールが可能です。
 
@@ -35,7 +36,7 @@ brew install asciidoctor
 
 
 
-# コーディング
+## コーディングの準備
 
 下記のコマンドを実行してコーディングの準備をします。
 
@@ -46,9 +47,17 @@ touch requirement.adoc
 touch style.css
 ```
 
+
+
+## コーディング
+
+### requirement.adoc
+
 エディタでrequirement.adocを開いて下記の内容を入力します。
 
 @[gist](https://gist.github.com/tatsuyasusukida/698121f677adda1266d3cd8217bc23e8?file=requirement.adoc.txt)
+
+### style.css
 
 続いてエディタでstyle.cssを開いて下記の内容を入力します。
 
@@ -56,7 +65,7 @@ touch style.css
 
 
 
-# HTMLファイルの出力
+## HTMLファイルの出力
 
 下記のコマンドを実行してHTMLファイルを出力します。
 
@@ -67,7 +76,7 @@ asciidoctor -a stylesheet=style.css -o dist/requirement.html requirement.adoc
 
 
 
-# 動作確認
+## 動作確認
 
 下記のコマンドを実行するなどして出力されたHTMLファイルを開きます。
 
@@ -93,7 +102,7 @@ open dist/requirement.html
 
 
 
-# おわりに
+## おわりに
 
 Asciidoctorでは図表に番号やキャプションを入れられるなど細かい部分で「あ、嬉しい！」と感じることが多いです。シンプルなMarkdownも素晴らしいですが文書作成には多機能なAsciidoctorの方が適しているように感じます。
 

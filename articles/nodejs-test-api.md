@@ -54,8 +54,7 @@ node-fetchをrequireを使ってインポートする場合はバージョン2�
 
 エディタでapi.jsを開いて下記の内容を入力します。
 
-[クリックしてapi.jsへ移動](#file-api-js)
-
+@[gist](https://gist.github.com/tatsuyasusukida/c21445d4a36b07013d79b2baa54e6d61?file=api.js)
 
 
 
@@ -75,7 +74,7 @@ touch api.test.js
 
 エディタでapi.test.jsを開いて下記の内容を入力します。
 
-[クリックしてapi.test.jsへ移動](#file-api-test-js)
+@[gist](https://gist.github.com/tatsuyasusukida/c21445d4a36b07013d79b2baa54e6d61?file=api.test.js)
 
 ポイントを下記に示します。
 

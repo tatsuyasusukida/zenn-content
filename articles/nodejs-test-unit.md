@@ -48,7 +48,7 @@ touch MyMath.js
 
 エディタでMyMath.jsを開いて下記の内容を入力します。
 
-[クリックしてMyMath.jsへ移動](#file-mymath-js)
+@[gist](https://gist.github.com/tatsuyasusukida/4e90436db3bf48ab6e840c098c701ea3?file=MyMath.js)
 
 
 
@@ -68,7 +68,7 @@ touch MyMathTest.js
 
 エディタでMyMathTest.jsを開いて下記の内容を入力します。
 
-[クリックしてMyMathTest.jsへ移動](#file-mymathtest-js)
+@[gist](https://gist.github.com/tatsuyasusukida/4e90436db3bf48ab6e840c098c701ea3?file=MyMathTest.js)
 
 ポイントを下記に示します。
 
