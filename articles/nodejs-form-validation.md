@@ -3,7 +3,7 @@ title: "Node.jsでユーザー入力のバリデーションを行う方法"
 emoji: "👍"
 type: "tech"
 topics: ["nodejs", "validation"]
-published: false
+published: true
 ---
 
 ## この記事について
@@ -12,10 +12,9 @@ published: false
 
 - [ソースコード](https://gist.github.com/tatsuyasusukida/fa28e2b0a8bb810b179556a42b946b97#file-form-js)
 - [English version / 英語版](https://gist.github.com/tatsuyasusukida/fa28e2b0a8bb810b179556a42b946b97)
-- [動画版](https://www.youtube.com/watch?v=xxxxxxxxxxx)
+- [動画版](https://www.youtube.com/watch?v=zxHFu5Mgp5U)
 
-https://www.youtube.com/watch?v=xxxxxxxxxxx
-
+https://www.youtube.com/watch?v=zxHFu5Mgp5U
 
 
 ## おおまかな手順
