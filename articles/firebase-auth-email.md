@@ -1,5 +1,5 @@
 ---
-title: "Firebase Authでメールアドレスとパスワードを使ってログインする方法"
+title: "Firebase Authでメールアドレスとパスワードを使ってログインする方法【動画版あり】"
 emoji: "🔥"
 type: "tech"
 topics: ["firebase", "auth"]
