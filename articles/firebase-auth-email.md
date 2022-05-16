@@ -1,14 +1,14 @@
 ---
-title: "Firebase Authを使ってメールアドレスとパスワードでログインする方法"
+title: "Firebase Authでメールアドレスとパスワードを使ってログインする方法"
 emoji: "🔥"
 type: "tech"
 topics: ["firebase", "auth"]
-published: false
+published: true
 ---
 
 ## この記事について
 
-この記事ではFirebase Authを使って下記4点を行う方法について紹介します。
+この記事ではFirebase Authで下記4点を行う方法について紹介します。
 
 - メールアドレスとパスワードでサインアップ（ユーザー登録）する
 - メールアドレスとパスワードでサインイン（ログイン）する
@@ -19,9 +19,9 @@ published: false
 
 - [ソースコード](https://gist.github.com/tatsuyasusukida/0de610fdd937aed64531cae3937f2c82#file-app-js)
 - [English version / 英語版](https://gist.github.com/tatsuyasusukida/0de610fdd937aed64531cae3937f2c82)
-- [動画版](https://www.youtube.com/watch?v=xxxxxxxxxxx)
+- [動画版](https://www.youtube.com/watch?v=V6TxnE9jOLs)
 
-https://www.youtube.com/watch?v=xxxxxxxxxxx
+https://www.youtube.com/watch?v=V6TxnE9jOLs
 
 
 
@@ -105,7 +105,7 @@ touch app.js firebase-config.json index.html webpack.config.js
 
 エディタでfirebase-config.jsonを開いて先の手順で控えた内容を入力します。
 
-@[gist](https://gist.github.com/tatsuyasusukida/0de610fdd937aed64531cae3937f2c82?file=firebase-config.js)
+@[gist](https://gist.github.com/tatsuyasusukida/0de610fdd937aed64531cae3937f2c82?file=firebase-config.example.json)
 
 ## app.js
 
