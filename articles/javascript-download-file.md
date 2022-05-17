@@ -2,7 +2,7 @@
 title: "JavaScriptでテキストファイルなどをダウンロードする方法【動画版あり】"
 emoji: "🚎"
 type: "tech"
-topics: ["nodejs", "test"]
+topics: ["javascript"]
 published: true
 ---
 
