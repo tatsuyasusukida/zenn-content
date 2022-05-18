@@ -67,7 +67,7 @@ open index.html
 
 Webページ内の「出力されるPNG画像」セクションにPNG画像が表示されていることを確認します。
 
-![ブラウザでindex.htmlを開いた様子です。Webページの見出しは「JavaScriptでSVGをPNGに変換する方法」であり、「入力されるSVG画像」セクションと「出力されるPNG画像」セクションには同じ灰色の円の画像がそれぞれ含まれています。](https://gist.github.com/tatsuyasusukida/1261585e3422da5645a1cbb9cf8813d6/raw/img-check-01.png)
+![ブラウザでindex.htmlを開いた様子です。Webページの見出しは「JavaScriptでSVGをPNGに変換する方法」であり、「入力されるSVG画像」セクションと「出力されるPNG画像」セクションには同じ灰色の円の画像がそれぞれ含まれています。](/images/articles/javascript-svg-png/img-check-01.png)
 
 
 
@@ -107,7 +107,7 @@ const svgDataBase64 = btoa(unescape(encodeURIComponent(svgData)))
 PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNDAiIGhlaWdodD0iMjQwIiBpZD0iaW5wdXQiPgogICAgICAgIDxjaXJjbGUgY3g9IjEyMCIgY3k9IjEyMCIgcj0iOTAiIGZpbGw9IiM4ODg4ODgiLz4KICAgICAgPC9zdmc+
 ```
 
-btoaは文字列をBase64に変換する関数ですが、ASCII文字以外を含む文字列を引数として渡すことはできません。そのためencodeURIComponent関数とunescape関数を使って非AS II文字をASCII文字に変換しています。例えばひらがなの「あ」はUTF-8では0xE3 0x81 0x82と3バイトなので `encodeURIComponent('あ')` の結果は %E3%81%82 になります（ちなみに `encode('あ')` の場合はSyntaxError例外が発生します）。一方、unescape関数は %E3%81%82 を3文字と認識するので `unescape('%E3%81%82')` の結果は 'ã\x81\x82' になります。
+btoaは文字列をBase64に変換する関数ですが、ASCII文字以外を含む文字列を引数として渡すことはできません。そのためencodeURIComponent関数とunescape関数を使って非ASCII文字をASCII文字に変換しています。例えばひらがなの「あ」はUTF-8では0xE3 0x81 0x82と3バイトなので `encodeURIComponent('あ')` の結果は %E3%81%82 になります（ちなみに `encode('あ')` の場合はSyntaxError例外が発生します）。一方、unescape関数は %E3%81%82 を3文字と認識するので `unescape('%E3%81%82')` の結果は 'ã\x81\x82' になります。
 
 JavaScriptの `btoa(unescape(encodeURIComponent(text)))` はNode.jsにおける `Buffer.from(text).toString('base64')` と同じようなものと理解しました。ということは `decodeURIComponent(escape(atob(base64)))` とすればbase64からテキストに変換できるのでしょうか（Node.jsにおける `Buffer.from(base64, 'base64').toString()` と同じようなものなのでしょうか）。下記のコードを実行したところ「あ」と評価されたのでどうやら正しいみたいです。
 
