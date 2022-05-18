@@ -47,13 +47,13 @@ touch index.html main.js
 
 エディタでindex.htmlを開いて下記の内容を入力します。
 
-[クリックしてindex.htmlへ移動](#file-index-html)
+@[gist](https://gist.github.com/tatsuyasusukida/1261585e3422da5645a1cbb9cf8813d6?file=index.html)
 
 ### main.js
 
 エディタでmain.jsを開いて下記の内容を入力します。
 
-[クリックしてmain.jsへ移動](#file-main-js)
+@[gist](https://gist.github.com/tatsuyasusukida/1261585e3422da5645a1cbb9cf8813d6?file=main.js)
 
 
 
