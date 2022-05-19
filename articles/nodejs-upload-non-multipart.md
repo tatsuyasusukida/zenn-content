@@ -71,11 +71,6 @@ touch client.js index.html server.js
 1. リクエストボディーをバッファーとして取得します。
 2. fsPromises.writeFile関数を使用してファイルを書き込みます。ファイルを書き込む前にfsPromises.mkdir関数を使用してディレクトリを作成します。
 
-The points are as follows:
-
-1. Get the request body as a buffer.
-2. Write the file using the fsPromises.writeFile function. Create a directory using the fsPromises.mkdir function before writing the file.
-
 
 
 ## 動作確認
