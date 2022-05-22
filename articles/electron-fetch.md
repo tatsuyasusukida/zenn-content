@@ -6,24 +6,25 @@ topics: ["nodejs", "electron"]
 published: true
 ---
 
-# この記事について
+## この記事について
 
-この記事ではElectronでrendererプロセスから [Fetch API](https://developer.mozilla.org/ja/docs/Web/API/Fetch_API) を使ってmainプロセスと通信する方法について紹介します。
+この記事ではElectronでrendererプロセスから [Fetch API](https://developer.mozilla.org/ja/docs/Web/API/Fetch_API) を使ってmainプロセスと通信する方法について紹介します。関連リソースを下記に示します。
 
-- [ソースコード](https://gist.github.com/tatsuyasusukida/43f9c962297db5991bc4511f351e0eb0)
+- [ソースコード](https://gist.github.com/tatsuyasusukida/43f9c962297db5991bc4511f351e0eb0#file-index-html)
 
 
 
-# おおまかな手順
+## おおまかな手順
 
 おおまか手順を下記に示します。
 
-1. コーディング
-2. 動作確認
+1. コーディングの準備
+2. コーディング
+3. 動作確認
 
 
 
-# コーディング
+## コーディングの準備
 
 ターミナルで下記のコマンドを実行してコーディングの準備をします。
 
@@ -36,7 +37,11 @@ npm install --save-dev electron
 touch index.html main.js renderer.js
 ```
 
-## main.js
+
+
+## コーディング
+
+### main.js
 
 エディタでmain.jsを開いて下記の内容を入力します。
 
@@ -51,19 +56,19 @@ touch index.html main.js renderer.js
 5. router.listenメソッドを呼び出してWebサーバーを起動します。
 6. mainWindow.loadURLメソッドを呼び出してWebサーバーにアクセスします。
 
-## index.html
+### index.html
 
 エディタでindex.htmlを開いて下記の内容を入力します。
 
 @[gist](https://gist.github.com/tatsuyasusukida/43f9c962297db5991bc4511f351e0eb0?file=index.html)
 
-## renderer.js
+### renderer.js
 
 エディタでrenderer.jsを開いて下記の内容を入力します。
 
 @[gist](https://gist.github.com/tatsuyasusukida/43f9c962297db5991bc4511f351e0eb0?file=renderer.js)
 
-## package.json
+### package.json
 
 エディタでpackage.jsonを開いてmainプロパティを下記の通り変更します。
 
@@ -73,7 +78,7 @@ touch index.html main.js renderer.js
 
 
 
-# 動作確認
+## 動作確認
 
 ターミナルで下記のコマンドを実行してコンソールに{"ok":true}と出力されることを確認します。
 
@@ -85,7 +90,7 @@ npx electron .
 
 
 
-# おわりに
+## おわりに
 
 Electronではプロセス間通信(IPC)のAPIを用意されているのでrendererプロセスからmainプロセスに通信するにあたってわざわざfetchを使う必要はありません。しかしながら、通信モデルがメッセージパッシングなのでリクエスト／レスポンス型の通信の場合はawaitするためにPromiseを書かなければならず、また、複数のリクエストを同時に送信する場合はユニークなIDなどを発行してリクエストを特定できるようにする必要があります。これに対してfetchの場合はawaitするためにPromiseを書かなくてよく、また、リクエストとレスポンスの対応を自動で管理してくれるのでとても楽です。デメリットとしてはTCPポートを一つオープンする必要があり、また、このTCPポートには同じPCからアクセスできてしまうのでセキュリティ上の懸念があります。
 
@@ -101,6 +106,6 @@ Electronを使ったWindows向けのデスクトップアプリをバージョ�
 
 
 
-# 関連記事
+## 関連記事
 
 - [Electronで標準入出力を使ってC言語プログラムを呼び出す方法](https://zenn.dev/tatsuyasusukida/articles/electron-child-process)
