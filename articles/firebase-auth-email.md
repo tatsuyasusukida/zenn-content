@@ -31,8 +31,10 @@ https://www.youtube.com/watch?v=V6TxnE9jOLs
 
 1. Firebaseの設定
 2. Firebaseアプリの登録
-3. コーディング
-4. 動作確認
+3. Authenticationの有効化
+4. コーディングの準備
+5. コーディング
+6. 動作確認
 
 
 
@@ -76,7 +78,7 @@ Authenticationの有効化が完了したらログインプロバイダセクシ
 
 
 
-## コーディング
+## コーディングの準備
 
 ターミナルで下記のコマンドを実行してコーディングの準備をします。
 
@@ -89,25 +91,29 @@ npm install --save-dev webpack webpack-cli webpack-dev-server
 touch app.js firebase-config.json index.html webpack.config.js
 ```
 
-## webpack.config.js
+
+
+## コーディング
+
+### webpack.config.js
 
 エディタでwebpack.config.jsを開いて下記の内容を入力します。
 
 @[gist](https://gist.github.com/tatsuyasusukida/0de610fdd937aed64531cae3937f2c82?file=webpack.config.js)
 
-## index.html
+### index.html
 
 エディタでindex.htmlを開いて下記の内容を入力します。
 
 @[gist](https://gist.github.com/tatsuyasusukida/0de610fdd937aed64531cae3937f2c82?file=index.html)
 
-## firebase-config.json
+### firebase-config.json
 
 エディタでfirebase-config.jsonを開いて先の手順で控えた内容を入力します。
 
 @[gist](https://gist.github.com/tatsuyasusukida/0de610fdd937aed64531cae3937f2c82?file=firebase-config.example.json)
 
-## app.js
+### app.js
 
 エディタでapp.jsを開いて下記の内容を入力します。
 
@@ -154,4 +160,3 @@ Firebaseは日本でもアプリ開発者に人気があるようでたくさん
 ## 関連記事
 
 - [Firebase AuthでGoogleアカウントを使ってログインする方法](https://gist.github.com/tatsuyasusukida/bec4108846bbe41961917e616efc0981)
-
