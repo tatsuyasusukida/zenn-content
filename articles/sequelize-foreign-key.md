@@ -1,5 +1,5 @@
 ---
-title: "Node.jsのSequelizeで非NULLの外部キーを設ける方法"
+title: "Node.jsのSequelizeで非NULLの外部キーを設ける方法【動画版あり】"
 emoji: "🍂"
 type: "tech"
 topics: ["nodejs"]
