@@ -1,5 +1,5 @@
 ---
-title: "Google Cloud StorageでCORSを設定する方法"
+title: "Google Cloud StorageでCORSを設定する方法【動画版あり】"
 emoji: "🚫"
 type: "tech"
 topics: ["gcp", "cors"]
