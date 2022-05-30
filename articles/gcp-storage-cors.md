@@ -3,7 +3,7 @@ title: "Google Cloud StorageでCORSを設定する方法【動画版あり】"
 emoji: "🚫"
 type: "tech"
 topics: ["gcp", "cors"]
-published: false
+published: true
 ---
 
 ## この記事について
@@ -120,7 +120,6 @@ mkdir gcp-storage-cors
 cd gcp-storage-cors
 npm init -y
 npm install --save-dev http-server
-npm install --save dotenv express node-fetch@2
 touch config.json index.html main.js
 ```
 
