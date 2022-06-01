@@ -3,7 +3,7 @@ title: "Firebase AuthでGoogleアカウントを使ってログインする方�
 emoji: "🐥"
 type: "tech"
 topics: ["firebase", "auth"]
-published: false
+published: true
 ---
 
 ## この記事について
@@ -18,9 +18,9 @@ published: false
 
 - [ソースコード](https://gist.github.com/tatsuyasusukida/bec4108846bbe41961917e616efc0981#file-app-js)
 - [English version / 英語版](https://gist.github.com/tatsuyasusukida/bec4108846bbe41961917e616efc0981)
-- [動画版](https://www.youtube.com/watch?v=xxxxxxxxxxx)
+- [動画版](https://www.youtube.com/watch?v=mQJYmOxyvrE)
 
-https://www.youtube.com/watch?v=xxxxxxxxxxx
+https://www.youtube.com/watch?v=mQJYmOxyvrE
 
 
 
@@ -28,7 +28,7 @@ https://www.youtube.com/watch?v=xxxxxxxxxxx
 
 おおまか手順を下記に示します。
 
-1. Firebaseの設定
+1. Firebaseプロジェクトの作成
 2. Firebaseアプリの登録
 3. Authenticationの有効化
 4. コーディングの準備
@@ -51,6 +51,18 @@ https://www.youtube.com/watch?v=xxxxxxxxxxx
 
 作成したプロジェクトの概要ページが表示されたら成功です。
 
+### 参考画像
+
+![](/images/articles/firebase-auth-google/img-project-01.jpg)
+
+![](/images/articles/firebase-auth-google/img-project-02.jpg)
+
+![](/images/articles/firebase-auth-google/img-project-03.jpg)
+
+![](/images/articles/firebase-auth-google/img-project-04.jpg)
+
+![](/images/articles/firebase-auth-google/img-project-05.jpg)
+
 
 
 ## Firebaseアプリの登録
@@ -63,6 +75,18 @@ https://www.youtube.com/watch?v=xxxxxxxxxxx
 
 firebaseConfigの内容を控え終わったら画面左上の「×」ボタンをクリックして「ウェブアプリへのFirebaseの追加」画面を閉じます。
 
+### 参考画像
+
+![](/images/articles/firebase-auth-google/img-app-01.jpg)
+
+![](/images/articles/firebase-auth-google/img-app-02.jpg)
+
+![](/images/articles/firebase-auth-google/img-app-03.jpg)
+
+![](/images/articles/firebase-auth-google/img-app-04.jpg)
+
+![](/images/articles/firebase-auth-google/img-app-05.jpg)
+
 
 
 ## Authenticationの有効化
@@ -74,6 +98,20 @@ Authenticationページに含まれる「始める」ボタンをクリックし
 Authenticationの有効化が完了したらのSign-in methodタブのログインプロバイダセクションに含まれる「Google」ボタンをクリックします。
 
 設定画面が表示されたら「有効にする」トグルボタンをクリックして有効にした後、「プロジェクトのサポートメール」を選択してから「保存」ボタンをクリックします。
+
+### 参考画像
+
+![](/images/articles/firebase-auth-google/img-auth-01.jpg)
+
+![](/images/articles/firebase-auth-google/img-auth-02.jpg)
+
+![](/images/articles/firebase-auth-google/img-auth-03.jpg)
+
+![](/images/articles/firebase-auth-google/img-auth-04.jpg)
+
+![](/images/articles/firebase-auth-google/img-auth-05.jpg)
+
+![](/images/articles/firebase-auth-google/img-auth-06.jpg)
 
 
 
@@ -110,7 +148,7 @@ touch app.js firebase-config.json index.html webpack.config.js
 
 エディタでfirebase-config.jsonを開いて先の手順で控えた内容を入力します。
 
-@[gist](https://gist.github.com/tatsuyasusukida/bec4108846bbe41961917e616efc0981?file=firebase-config.json)
+@[gist](https://gist.github.com/tatsuyasusukida/bec4108846bbe41961917e616efc0981?file=firebase-config.example.json)
 
 ### app.js
 
@@ -155,4 +193,4 @@ Googleのログインページからアプリのページへ戻る時にクエ�
 
 ## 関連記事
 
-- [Firebase Authを使ってメールアドレスとパスワードでログインする方法](https://gist.github.com/tatsuyasusukida/0de610fdd937aed64531cae3937f2c82)
+- [Firebase Authを使ってメールアドレスとパスワードでログインする方法](https://zenn.dev/tatsuyasusukida/articles/firebase-auth-email)
