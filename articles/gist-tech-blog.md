@@ -21,7 +21,7 @@ published: false
 関連リソースを下記に示します。
 
 - [ソースコード](https://gist.github.com/tatsuyasusukida/0356b3a2ba3ae9b4885a33efe52b50a5#file-index-html)
-
+- [English version / 英語版](https://gist.github.com/tatsuyasusukida/0356b3a2ba3ae9b4885a33efe52b50a5)
 
 
 ## README.mdを最初に表示する
@@ -44,7 +44,7 @@ GistではMarkdownにソースコードを埋め込むことができない様�
 
 下記に実行結果を示します。
 
-[クリックしてindex.htmlに移動](#file-index-html)
+[クリックしてindex.htmlに移動](https://gist.github.com/tatsuyasusukida/0356b3a2ba3ae9b4885a33efe52b50a5#file-index-html)
 
 
 
@@ -109,7 +109,7 @@ HTMLファイルからCSSやJavaScriptを読み込むことも可能です。
 これは好みですが下記のようにREADMEの冒頭にタイトルをつけておくと記事の内容を思い出すのに便利です。また、絵文字があると後から探しやすくなります。
 
 ```md
-# 😀 Gistを技術ブログとして使うコツ6選
+# 😀 Gistを技術ブログとして使うコツ7選
 
 ## この記事について
 ...
@@ -118,7 +118,7 @@ HTMLファイルからCSSやJavaScriptを読み込むことも可能です。
 GistレポジトリのdescriptionはそのままGistページのHTMLのtitleやdescriptionになる様子です。Googleなどの検索結果でタイトルがしっかり表示されるようにするため、Gistレポジトリのdescriptionにも同じタイトルをつけることがおすすめです。下記にコマンド例を示します。
 
 ```
-gh gist create -wpd "😀 Gistを技術ブログとして使うコツ6選" *
+gh gist create -wpd "😀 Gistを技術ブログとして使うコツ7選" *
 ```
 
 
