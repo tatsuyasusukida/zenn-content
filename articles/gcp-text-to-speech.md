@@ -6,7 +6,7 @@ topics: ["gcp", "nodejs"]
 published: false
 ---
 
-## はじめに
+## この記事について
 
 この記事ではNode.jsでGoogle Cloud Platform (GCP)のCloud Text-to-Speechを使ってテキストを音声に変換する方法について紹介します。関連リソースを下記に示します。
 
