@@ -3,7 +3,7 @@ title: "Gistを技術ブログのように使うコツ7選"
 emoji: "🎥"
 type: "tech"
 topics: ["gist"]
-published: false
+published: true
 ---
 
 ## この記事について
@@ -22,6 +22,7 @@ published: false
 
 - [ソースコード](https://gist.github.com/tatsuyasusukida/0356b3a2ba3ae9b4885a33efe52b50a5#file-index-html)
 - [English version / 英語版](https://gist.github.com/tatsuyasusukida/0356b3a2ba3ae9b4885a33efe52b50a5)
+
 
 
 ## README.mdを最初に表示する
