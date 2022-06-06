@@ -93,8 +93,7 @@ YouTubeの場合は下記のように記述することで動画のサムネイ�
 
 ## デモを表示する
 
-HTML限定ですがURLのgithubをgithackに置き換えることでデモを表示することができます。
-HTMLファイルからCSSやJavaScriptを読み込むことも可能です。
+HTML限定ですがURLのgithubをgithackに置き換えることでデモを表示することができます。HTMLファイルからCSSやJavaScriptを読み込むことも可能です。
 
 ```
 [デモ](https://gist.githack.com/tatsuyasusukida/0356b3a2ba3ae9b4885a33efe52b50a5/raw/index.html)
