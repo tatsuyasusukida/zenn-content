@@ -10,6 +10,10 @@ published: true
 
 この記事では [Sublime Text](https://www.sublimetext.com/) のライセンスをアップグレード（$80）する時に私のミスでライセンスを新規購入（$99）してしまったにも関わらず、ダメ元で差額の返金をお願いするメールを送ったところ快く返金に応じてくれたエピソードについて紹介します。
 
+関連リソースを下記に示します。
+
+- [英語版 / English version](https://gist.github.com/tatsuyasusukida/631608a7ca36367457cc685d7e85285f)
+
 
 
 # 事の発端
