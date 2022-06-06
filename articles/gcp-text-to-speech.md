@@ -12,6 +12,9 @@ published: false
 
 - [ソースコード](https://gist.github.com/tatsuyasusukida/4c2b71df2e82bf1fa017407338b03166#file-main-mjs)
 - [English version / 英語版](https://gist.github.com/tatsuyasusukida/4c2b71df2e82bf1fa017407338b03166)
+- [デモ動画](https://www.youtube.com/watch?v=OTIQBAx_D24)
+
+https://www.youtube.com/watch?v=OTIQBAx_D24
 
 
 
