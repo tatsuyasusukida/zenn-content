@@ -20,6 +20,7 @@ published: true
 
 関連リソースを下記に示します。
 
+- [デモ](https://gist.github.com/tatsuyasusukida/0356b3a2ba3ae9b4885a33efe52b50a5)
 - [ソースコード](https://gist.github.com/tatsuyasusukida/0356b3a2ba3ae9b4885a33efe52b50a5#file-index-html)
 - [English version / 英語版](https://gist.github.com/tatsuyasusukida/0356b3a2ba3ae9b4885a33efe52b50a5)
 
