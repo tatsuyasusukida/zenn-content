@@ -12,7 +12,7 @@ published: true
 
 関連リソースを下記に示します。
 
-- [英語版 / English version](https://gist.github.com/tatsuyasusukida/631608a7ca36367457cc685d7e85285f)
+- [English version / 英語版](https://gist.github.com/tatsuyasusukida/631608a7ca36367457cc685d7e85285f)
 
 
 
