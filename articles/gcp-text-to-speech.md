@@ -1,5 +1,5 @@
 ---
-title: "Node.jsでGoogle Text-to-Speech を使ってテキストを音声に変換する方法"
+title: "Node.jsでGoogle Text-to-Speech を使ってテキストを音声に変換する方法【デモ動画あり】"
 emoji: "🎤"
 type: "tech"
 topics: ["gcp", "nodejs"]
