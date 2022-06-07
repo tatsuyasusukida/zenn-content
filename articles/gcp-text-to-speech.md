@@ -3,7 +3,7 @@ title: "Node.jsでGoogle Text-to-Speech を使ってテキストを音声に変�
 emoji: "🎤"
 type: "tech"
 topics: ["gcp", "nodejs"]
-published: false
+published: true
 ---
 
 ## この記事について
@@ -71,6 +71,8 @@ gcloud auth application-default login
 ```shell
 node main.mjs
 ```
+
+音声はoutputディレクトリに出力されます。
 
 
 
