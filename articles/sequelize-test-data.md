@@ -90,7 +90,7 @@ touch .env main.js
 node -r dotenv/config main.js
 ```
 
-実行結果に下記2点が含まれていることを確認します。
+実行結果に下記3点が含まれていることを確認します。
 
 - userテーブルへのINSERT文
 - articleテーブルへのINSERT文
