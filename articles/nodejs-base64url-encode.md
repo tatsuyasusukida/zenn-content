@@ -10,8 +10,9 @@ published: true
 
 この記事ではNode.jsで [Base64URL](https://tools.ietf.org/html/rfc4648#section-5) のエンコードとデコードを行う方法について紹介します。
 
-- [ソースコード](https://gist.github.com/tatsuyasusukida/ce71456081748242a0bd4cbfcfe44eb7)
+- [ソースコード](https://gist.github.com/tatsuyasusukida/ce71456081748242a0bd4cbfcfe44eb7#file-main-js)
 - [動画版](https://www.youtube.com/watch?v=gpqohLJw3iE)
+- [English version / 英語版](https://gist.github.com/tatsuyasusukida/ce71456081748242a0bd4cbfcfe44eb7)
 
 https://www.youtube.com/watch?v=gpqohLJw3iE
 
