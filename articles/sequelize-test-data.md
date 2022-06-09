@@ -3,13 +3,14 @@ title: "Sequelizeでテストデータを登録する方法"
 emoji: "🧐"
 type: "tech"
 topics: ["nodejs", "sequelize"]
-published: false
+published: true
 ---
 
 ## この記事について
 
 この記事ではNode.jsのORMである [Sequelize](https://sequelize.org/) を使ってデータベースにテストデータを登録する方法について紹介します。関連リソースを下記に示します。
 
+- [ソースコード](https://gist.github.com/tatsuyasusukida/b3fea25a4619ae25034ddd3f35e5a450#file-main-js)
 - [English version / 英語版](https://gist.github.com/tatsuyasusukida/b3fea25a4619ae25034ddd3f35e5a450)
 
 
