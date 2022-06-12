@@ -1,5 +1,5 @@
 ---
-title: "JavaScriptでMediaStream Recording APIを使って音声を収録する方法"
+title: "JavaScriptでMediaStream Recording APIを使って音声を収録する方法【デモ+動画あり】"
 emoji: "🎤"
 type: "tech"
 topics: ["javascript", "recording"]
