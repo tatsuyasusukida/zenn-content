@@ -10,8 +10,9 @@ published: true
 
 この記事では標準入出力を使ってC言語プログラムを呼び出す方法を紹介します。C言語プログラムを呼び出すにあたり、Node.jsの標準ライブラリであるchild_processに含まれるspawn関数をmainプロセスから利用します。
 
-- [ソースコード](https://gist.github.com/tatsuyasusukida/f502ba76cffa21610e109ba11e729804)
+- [ソースコード](https://gist.github.com/tatsuyasusukida/f502ba76cffa21610e109ba11e729804#file-add-c)
 - [動画版](https://www.youtube.com/watch?v=GvT5inJGtIE)
+- [English version / 英語版](https://gist.github.com/tatsuyasusukida/f502ba76cffa21610e109ba11e729804)
 
 https://www.youtube.com/watch?v=GvT5inJGtIE
 
