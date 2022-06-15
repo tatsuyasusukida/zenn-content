@@ -11,6 +11,7 @@ published: true
 この記事ではSequelizeを使っていて子モデルのレコードを削除した時に親モデルのレコードが削除されるかなり興味深い動作を発見したので自分用の備忘も兼ねて再現手順などについて説明します。関連リソースを下記に示します。
 
 - [ソースコード](https://gist.github.com/tatsuyasusukida/24f591f2b5f5305ce66fe628c53e8041#file-main-js)
+- [English version / 英語版](https://gist.github.com/tatsuyasusukida/24f591f2b5f5305ce66fe628c53e8041)
 
 
 
@@ -113,7 +114,7 @@ DELETE FROM `children` WHERE `id` = 1
 
 1. 複数の子モデルが同じ1つの親モデルに対してbelongsToアソシエーションを設定している
 2. belongsToアソシエーションを設定する時に同じオプションのオブジェクトを使用している
-3. belongsTOアソシエーションのオプションに `onDelete: 'cascade'` が含まれている
+3. belongsToアソシエーションのオプションに `onDelete: 'cascade'` が含まれている
 
 
 
