@@ -1,5 +1,5 @@
 ---
-title: "Googleフォームの回答ページのようなものを小一時間で作る"
+title: "Googleフォームの回答ページのようなものを小一時間で作る【デモ動画あり】"
 emoji: "🌻"
 type: "tech"
 topics: ["nodejs"]
