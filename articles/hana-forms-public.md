@@ -1,24 +1,26 @@
 ---
-title: "小一時間でGoogleフォームを作る"
+title: "Googleフォームの回答ページのようなものを小一時間で作る"
 emoji: "🌻"
 type: "tech"
 topics: ["nodejs"]
-published: false
+published: true
 ---
 
 ## この記事について
 
-この記事では [Google Forms](https://www.google.com/forms/about/) のようなオンラインフォーム作成ツールをNode.jsで作る方法について紹介します。この記事で実装するオンラインフォーム作成ツールは下記の2つのサブシステムから構成されます。
+この記事では [Google Forms](https://www.google.com/forms/about/) のようなオンラインフォーム作成ツールの回答ページを小一時間（コード行数の合計 = 664行）で作成する手順について説明します。この記事で実装するオンラインフォーム作成ツールは下記の2つのサブシステムから構成されます。
 
-- Hana Forms Public: ユーザーが回答を入力するためのサブシステム
-- Hana Forms Admin: ユーザーがフォームを管理するためのサブシステム
+1. ユーザーが回答を入力するためのサブシステム
+2. ユーザーがフォームを管理するためのサブシステム
 
-この記事では前者のHana Forms Publicを対象とします。関連リソースを下記に示します。
+この記事では前者の「1. ユーザーが回答を入力するためのサブシステム」を対象として説明します。関連リソースを下記に示します。
 
+- [デモ](https://hana-forms-6fsrjyleha-an.a.run.app/form/1234abcd/)
+- [デモ動画](https://www.youtube.com/watch?v=5lL0_Q22EVw)
 - [ソースコード](https://gist.github.com/tatsuyasusukida/32df3db218205f394eb072055df09abf#file-api-initialize-js)
 - [English version / 英語版](https://gist.github.com/tatsuyasusukida/32df3db218205f394eb072055df09abf)
 
-ちなみにHanaは私の娘の名前です :) 
+https://www.youtube.com/watch?v=5lL0_Q22EVw
 
 
 
@@ -35,12 +37,14 @@ published: false
 
 ## データベースの準備
 
-下記のコマンドを実行してデータベースの準備をします。
+下記のSQL文を発行してデータベースの準備をします。
+
+@[gist](https://gist.github.com/tatsuyasusukida/32df3db218205f394eb072055df09abf?file=db.sql)
+
+ターミナルからSQL文を発行するには下記のコマンドを実行します。なお、パスワードを設定していない場合は-pオプションは不要です。
 
 ```shell
-create database hana_forms charset utf8;
-create user hana_forms@localhost identified by 'password';
-grant all privileges on hana_forms.* to hana_forms@localhost;
+mysql -u root -p 
 ```
 
 
@@ -53,85 +57,65 @@ grant all privileges on hana_forms.* to hana_forms@localhost;
 mkdir HanaForms
 cd HanaForms
 npm init -y
-npm install --save dotenv ejs express morgan mysql2 sequelize
-touch .env api-initialize.js api-validate.js api-submit.js fixture.js main.js model.js static-js-input.js validate.js view-finish.ejs view-home.ejs view-input.ejs
+npm install --save dotenv ejs express morgan mysql2 nocache sequelize
+touch .env api-initialize.js api-validate.js api-submit.js find-form.js fixture.js main.js model.js partial-checkbox.ejs partial-input.ejs partial-radio.ejs partial-textarea.ejs static-js-input.js validate.js view-finish.ejs view-home.ejs view-input.ejs
 ```
 
 
 
 ## コーディング
 
-### .env
+ソースコードの一覧を下記に示します。
 
-エディタで.envを開いて下記の内容を入力します。
+- [.env](https://gist.github.com/tatsuyasusukida/32df3db218205f394eb072055df09abf#file-env-example)
+- [main.js](https://gist.github.com/tatsuyasusukida/32df3db218205f394eb072055df09abf#file-main-js)
+- [view-home.ejs](https://gist.github.com/tatsuyasusukida/32df3db218205f394eb072055df09abf#file-view-home-ejs)
+- [view-input.ejs](https://gist.github.com/tatsuyasusukida/32df3db218205f394eb072055df09abf#file-view-input-ejs)
+- [view-finish.ejs](https://gist.github.com/tatsuyasusukida/32df3db218205f394eb072055df09abf#file-view-finish-ejs)
+- [partial-input.ejs](https://gist.github.com/tatsuyasusukida/32df3db218205f394eb072055df09abf#file-partial-input-ejs)
+- [partial-textarea.ejs](https://gist.github.com/tatsuyasusukida/32df3db218205f394eb072055df09abf#file-partial-textarea-ejs)
+- [partial-radio.ejs](https://gist.github.com/tatsuyasusukida/32df3db218205f394eb072055df09abf#file-partial-radio-ejs)
+- [partial-checkbox.ejs](https://gist.github.com/tatsuyasusukida/32df3db218205f394eb072055df09abf#file-partial-checkbox-ejs)
+- [model.js](https://gist.github.com/tatsuyasusukida/32df3db218205f394eb072055df09abf#file-model-js)
+- [fixture.js](https://gist.github.com/tatsuyasusukida/32df3db218205f394eb072055df09abf#file-fixture-js)
+- [static-js-input.js](https://gist.github.com/tatsuyasusukida/32df3db218205f394eb072055df09abf#file-static-js-input-js)
+- [find-form.js](https://gist.github.com/tatsuyasusukida/32df3db218205f394eb072055df09abf#file-find-form-js)
+- [validate.js](https://gist.github.com/tatsuyasusukida/32df3db218205f394eb072055df09abf#file-validate-js)
+- [api-initialize.js](https://gist.github.com/tatsuyasusukida/32df3db218205f394eb072055df09abf#file-api-initialize-js)
+- [api-validate.js](https://gist.github.com/tatsuyasusukida/32df3db218205f394eb072055df09abf#file-api-validate-js)
+- [api-submit.js](https://gist.github.com/tatsuyasusukida/32df3db218205f394eb072055df09abf#file-api-submit-js)
 
-@[gist](https://gist.github.com/tatsuyasusukida/32df3db218205f394eb072055df09abf?file=.env)
-
-### main.js
-
-エディタでmain.jsを開いて下記の内容を入力します。
-
-@[gist](https://gist.github.com/tatsuyasusukida/32df3db218205f394eb072055df09abf?file=main.js)
-
-### view-home.ejs
-
-エディタでview-home.ejsを開いて下記の内容を入力します。
-
-@[gist](https://gist.github.com/tatsuyasusukida/32df3db218205f394eb072055df09abf?file=view-home.ejs)
-
-### view-input.ejs
-
-エディタでview-input.ejsを開いて下記の内容を入力します。
-
-@[gist](https://gist.github.com/tatsuyasusukida/32df3db218205f394eb072055df09abf?file=view-input.ejs)
-
-### view-finish.ejs
-
-エディタでview-finish.ejsを開いて下記の内容を入力します。
-
-@[gist](https://gist.github.com/tatsuyasusukida/32df3db218205f394eb072055df09abf?file=view-finish.ejs)
+主要なソースコードの内容を下記に示します。
 
 ### model.js
 
-エディタでmodel.jsを開いて下記の内容を入力します。
-
 @[gist](https://gist.github.com/tatsuyasusukida/32df3db218205f394eb072055df09abf?file=model.js)
 
-### fixture.js
+### main.js
 
-エディタでfixture.jsを開いて下記の内容を入力します。
+@[gist](https://gist.github.com/tatsuyasusukida/32df3db218205f394eb072055df09abf?file=main.js)
 
-@[gist](https://gist.github.com/tatsuyasusukida/32df3db218205f394eb072055df09abf?file=fixture.js)
+### view-input.ejs
+
+@[gist](https://gist.github.com/tatsuyasusukida/32df3db218205f394eb072055df09abf?file=view-input.ejs)
 
 ### static-js-input.js
 
-エディタでstatic-js-input.jsを開いて下記の内容を入力します。
-
 @[gist](https://gist.github.com/tatsuyasusukida/32df3db218205f394eb072055df09abf?file=static-js-input.js)
 
-### validate.js
-
-エディタでvalidate.jsを開いて下記の内容を入力します。
-
-@[gist](https://gist.github.com/tatsuyasusukida/32df3db218205f394eb072055df09abf?file=validate.js)
-
 ### api-initialize.js
-
-エディタでapi-initialize.jsを開いて下記の内容を入力します。
 
 @[gist](https://gist.github.com/tatsuyasusukida/32df3db218205f394eb072055df09abf?file=api-initialize.js)
 
 ### api-validate.js
 
-エディタでapi-validate.jsを開いて下記の内容を入力します。
-
 @[gist](https://gist.github.com/tatsuyasusukida/32df3db218205f394eb072055df09abf?file=api-validate.js)
 
 ### api-submit.js
 
-エディタでapi-submit.jsを開いて下記の内容を入力します。
-
 @[gist](https://gist.github.com/tatsuyasusukida/32df3db218205f394eb072055df09abf?file=api-submit.js)
+
+
 
 
 
@@ -155,11 +139,21 @@ node -r dotenv/config main.js
 
 完了ページが表示されることを確認します。
 
+### 参考画像
+
+![](/images/articles/hana-forms-public/img-check-01.jpg)
+
+![](/images/articles/hana-forms-public/img-check-02.jpg)
+
+![](/images/articles/hana-forms-public/img-check-03.jpg)
+
+![](/images/articles/hana-forms-public/img-check-04.jpg)
+
 
 
 ## おわりに
 
-データベースのレコードに基づいて動的にフォームを生成するGoogle Formsの回答ページのようなサブシステムを実装することができました。ただし、実装されたシステムはチュートリアルのために簡略化されています。さらにGoogle Formsに近づけるためには下記のような機能を設ける必要があります。
+この記事で作成したサブシステムはチュートリアル用に簡略化されており、さらにGoogle Formsに近づけるためには下記のような機能を設ける必要があると考えています。
 
 - 画像や動画の表示
 - ファイルのアップロード
@@ -173,21 +167,8 @@ node -r dotenv/config main.js
 - 運用性の向上
 - アクセシビリティの向上
 
-ユーザー体験の向上については一例としてバリデーションのエラーメッセージのリアルタイム表示などが挙げられます。そのためにはフロントエンドのJavaScriptでさまざまな処理を行う必要があり、その際にはwebpackなどのモジュールバンドラーが役に立つかも知れません。
+この記事を投稿する前に本テーマに関する素晴らしい記事を見つけたので下記にリンクを記載します。
 
-セキュリティの向上については一例としてContent Security Policyの設定が挙げられます。Expressでは [Helmet](https://www.npmjs.com/package/helmet) というミドルウェアを使うことでセキュリティに関するHTTPヘッダを自動的に追加することができます。
+https://zenn.dev/d0ne1s/articles/6a223e6b1a1a36
 
-運用性の向上については一例としてログ収集が挙げられます。Node.jsのログ収集ライブラリとしては [winston](https://www.npmjs.com/package/winston) が有名です。
-
-アクセシビリティの向上については一例としてaria属性の設定が挙げられます。aria属性のを含む、アクセシビリティに関する情報についてはW3Cの WAI-ARIA Overview のページがとても有益です。
-
-ユーザーがフォームを管理するためのサブシステムを作る方法については「Hana Forms Admin」の記事をお読みください。ご意見ご感想がありましたらお気軽にコメントをいただければ幸いです。最後までお読みいただきありがとうございました！
-
-
-
-## 関連記事
-
-- [How to insert test data with Sequelize](https://gist.github.com/tatsuyasusukida/b3fea25a4619ae25034ddd3f35e5a450)
-- [How to make foreign keys non-null with Sequelize](https://gist.github.com/tatsuyasusukida/547fb468b9bf352ddf9046e2f88a4d5c)
-- [How to validate user input in Node.js](https://gist.github.com/tatsuyasusukida/fa28e2b0a8bb810b179556a42b946b97)
-- [How to collect logs using winston in Node.js](https://gist.github.com/tatsuyasusukida/92b0f5dd8523ebdf19edb4a977a8030a)
+ユーザーがフォームを管理するためのサブシステムを作成する手順については来週中を目標に記事にまとめて投稿しようと思います。
