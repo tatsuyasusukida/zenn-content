@@ -13,7 +13,7 @@ published: true
 1. ユーザーが回答を入力するためのサブシステム
 2. ユーザーがフォームを管理するためのサブシステム
 
-この記事では前者の「1. ユーザーが回答を入力するためのサブシステム」を対象として説明します。関連リソースを下記に示します。
+この記事では前者の「1. ユーザーが回答を入力するためのサブシステム」を対象として説明します。後者の「2. ユーザーがフォームを管理するためのサブシステム」については [Googleフォームの管理ページのようなものは小一時間では作れない](https://zenn.dev/tatsuyasusukida/articles/hana-forms-admin) の記事をご参照ください。この記事の関連リソースを下記に示します。
 
 - [デモ](https://hana-forms-6fsrjyleha-an.a.run.app/form/1234abcd/)
 - [デモ動画](https://www.youtube.com/watch?v=5lL0_Q22EVw)
@@ -117,8 +117,6 @@ touch .env api-initialize.js api-validate.js api-submit.js find-form.js fixture.
 
 
 
-
-
 ## 動作確認
 
 下記のコマンドを実行してデータベースにテーブルを作成してレコードを挿入します。
@@ -172,3 +170,5 @@ node -r dotenv/config main.js
 https://zenn.dev/d0ne1s/articles/6a223e6b1a1a36
 
 ユーザーがフォームを管理するためのサブシステムを作成する手順については来週中を目標に記事にまとめて投稿しようと思います。
+
+
