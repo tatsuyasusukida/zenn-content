@@ -11,7 +11,7 @@ published: true
 この記事ではNode.jsの[Sequelize](https://sequelize.org/)から[PlanetScale](https://planetscale.com/)のMySQLデータベースにアクセスする方法について紹介します。関連リソースを下記に示します。
 
 - [ソースコード](https://gist.github.com/tatsuyasusukida/f12e97732da431b090eb27935b420eb3#file-after-js)
-
+- [English version / 英語版](https://gist.github.com/tatsuyasusukida/f12e97732da431b090eb27935b420eb3)
 
 
 ## Beforeのソースコード
@@ -45,8 +45,24 @@ PlanetScaleへのアクセスに対応した後のソースコードを下記に
 Beforeのソースコードを実行して発行されるSQL文を下記に示します。なお、CREATE文とINSERT文のみを抜粋しています。
 
 ```sql
-CREATE TABLE IF NOT EXISTS `users` (`id` INTEGER NOT NULL auto_increment , `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB;
-CREATE TABLE IF NOT EXISTS `articles` (`id` INTEGER NOT NULL auto_increment , `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `userId` INTEGER NOT NULL, PRIMARY KEY (`id`), FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE CASCADE) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` INTEGER NOT NULL auto_increment ,
+  `createdAt` DATETIME NOT NULL,
+  `updatedAt` DATETIME NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS `articles` (
+  `id` INTEGER NOT NULL auto_increment ,
+  `createdAt` DATETIME NOT NULL,
+  `updatedAt` DATETIME NOT NULL,
+  `userId` INTEGER NOT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`userId`) REFERENCES `users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE CASCADE
+) ENGINE=InnoDB;
+
 INSERT INTO `users` VALUES (NULL, NOW(), NOW())
 ```
 
@@ -64,8 +80,21 @@ DB_URL=mysql://ps_user:ps_pass@localhost:3306/ps_db \
 Afterのソースコードを実行して発行されるSQL文を下記に示します。なお、CREATE文とINSERT文のみを抜粋しています。
 
 ```sql
-CREATE TABLE IF NOT EXISTS `psUsers` (`id` INTEGER NOT NULL auto_increment , `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB;
-CREATE TABLE IF NOT EXISTS `psArticles` (`id` INTEGER NOT NULL auto_increment , `createdAt` DATETIME NOT NULL, `updatedAt` DATETIME NOT NULL, `userId` INTEGER NOT NULL, PRIMARY KEY (`id`)) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS `psUsers` (
+  `id` INTEGER NOT NULL auto_increment ,
+  `createdAt` DATETIME NOT NULL,
+  `updatedAt` DATETIME NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS `psArticles` (
+  `id` INTEGER NOT NULL auto_increment ,
+  `createdAt` DATETIME NOT NULL,
+  `updatedAt` DATETIME NOT NULL,
+  `userId` INTEGER NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB;
+
 INSERT INTO `psUsers` VALUES (NULL, NOW(), NOW());
 ```
 
