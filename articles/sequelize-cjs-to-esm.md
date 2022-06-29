@@ -10,7 +10,8 @@ published: true
 
 この記事ではNode.jsの[Sequelize](https://sequelize.org/)でCommonJS(CJS)からES Modules(ESM)へ移行する方法について紹介します。関連リソースを下記に示します。
 
-- [ソースコード](https://github.com/tatsuyasusukida/sequelize-cjs-to-esm/tree/main)
+- [ソースコード](https://github.com/tatsuyasusukida/sequelize-cjs-to-esm)
+- [English version / 英語版](https://github.com/tatsuyasusukida/sequelize-cjs-to-esm)
 
 
 
