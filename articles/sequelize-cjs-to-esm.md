@@ -1,8 +1,8 @@
 ---
 title: "SequelizeでCJSからESMへ移行する方法"
-emoji: "🌏"
+emoji: "🚀"
 type: "tech"
-topics: ["nodejs", "sequelize", "planetscale"]
+topics: ["nodejs", "sequelize"]
 published: true
 ---
 
