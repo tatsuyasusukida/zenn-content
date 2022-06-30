@@ -8,6 +8,8 @@ published: true
 
 # この記事について
 
+[新しいバージョンの記事](https://zenn.dev/tatsuyasusukida/articles/cloud-run-buildpacks)が投稿されています。
+
 この記事では [Buildpacks](https://buildpacks.io/) を使って作成したNode.jsのコンテナイメージを [Cloud Run](https://cloud.google.com/run) にデプロイする方法について紹介します。
 
 
