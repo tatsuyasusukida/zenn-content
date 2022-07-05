@@ -160,7 +160,7 @@ clientIdには先の手順でコピーしたOAuth 2.0 クライアントIDをペ
 
 @[gist](https://gist.github.com/tatsuyasusukida/5fcae93f75a5ccc0e43a1d6a86ef223c?file=upload.mjs)
 
-詳細についてはGoogle Drive for Developmersの[Upload file data](https://developers.google.com/drive/api/guides/manage-uploads)のページが参考になります。
+詳細についてはGoogle Drive for Developersの[Upload file data](https://developers.google.com/drive/api/guides/manage-uploads)のページが参考になります。
 
 
 
