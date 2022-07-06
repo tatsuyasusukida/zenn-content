@@ -1,5 +1,5 @@
 ---
-title: "Google Driveにライブラリなしでファイルをアップロードする方法"
+title: "Google Driveにライブラリなしでファイルをアップロードする方法【動画あり】"
 emoji: "🏎"
 type: "tech"
 topics: ["javascript", "google", "googledrive", "oauth"]
