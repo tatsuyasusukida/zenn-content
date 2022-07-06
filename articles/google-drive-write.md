@@ -11,6 +11,9 @@ published: true
 この記事ではWebアプリからJavaScriptを使って[Google Drive](https://www.google.com/drive/)にライブラリなしでファイルをアップロードする方法について紹介します。関連リソースを下記に示します。
 
 - [ソースコード](https://gist.github.com/tatsuyasusukida/5fcae93f75a5ccc0e43a1d6a86ef223c)
+- [準備作業の動画](https://www.youtube.com/watch?v=Hkiza5g04HA)
+
+https://www.youtube.com/watch?v=Hkiza5g04HA
 
 
 
