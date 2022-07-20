@@ -2,7 +2,7 @@
 title: "JPEG画像のファイルサイズを一括で圧縮する"
 emoji: "🗜"
 type: "tech"
-topics: ["docker", "php", "cakephp"]
+topics: ["nodejs", "sharp", "jpeg"]
 published: true
 ---
 
