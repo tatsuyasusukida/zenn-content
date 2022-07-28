@@ -3,7 +3,7 @@ title: "ターミナルからGistを更新する方法"
 emoji: "🐈"
 type: "tech"
 topics: ["git", "github", "gist"]
-published: false
+published: true
 ---
 
 ## この記事について
