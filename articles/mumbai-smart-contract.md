@@ -19,6 +19,10 @@ https://www.youtube.com/watch?v=3J6167FdJcc
 
 ## 秘密鍵の作成
 
+コントラクトをデプロイするためには秘密鍵が必要になりますが、普段使っているアカウントの秘密鍵を使うのは危険なのでテスト用のアカウントを作成します。
+
+テスト用のアカウントを作成するのにMetaMaskを使いますがインストールしていない場合はchromeウェブストアの[MetaMask](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn)のページからインストールします。
+
 MetaMaskを起動してMy Accounts（画面右上にある丸いアイコン）> Create Accountをクリックします。
 
 アカウント名を入力してからCreateボタンをクリックします。
