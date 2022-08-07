@@ -11,7 +11,9 @@ published: true
 この記事では[Hardhat](https://hardhat.org/)を使ってEthereumのテストネットである[Goerli](https://goerli.etherscan.io/)上でERC-20トークンを発行する方法について紹介します。内容についてはAlchemy Documentationの[How to Create an ERC-20 Token](https://docs.alchemy.com/docs/how-to-create-an-erc-20-token-4-steps)チュートリアルをベースにしています。この記事の関連リソースを下記に示します。
 
 - [ソースコード](https://github.com/tatsuyasusukida/how-to-create-your-own-erc20-token/tree/main)
+- [発行したトークンのEtherscanページ](https://goerli.etherscan.io/token/0x662d97b8648a7BAD2923fd14c55C26Adc7418743)
 
+https://goerli.etherscan.io/token/0x662d97b8648a7BAD2923fd14c55C26Adc7418743
 
 
 ## 秘密鍵の作成
