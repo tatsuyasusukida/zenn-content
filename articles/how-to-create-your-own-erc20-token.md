@@ -18,7 +18,7 @@ https://goerli.etherscan.io/token/0x662d97b8648a7BAD2923fd14c55C26Adc7418743
 
 ## 秘密鍵の作成
 
-[Mumbaiにスマートコントラクトをデプロイする方法](https://zenn.dev/tatsuyasusukida/articles/mumbai-smart-contract)の記事の[秘密鍵の作成](https://zenn.dev/tatsuyasusukida/articles/mumbai-smart-contract#%E7%A7%98%E5%AF%86%E9%8D%B5%E3%81%AE%E4%BD%9C%E6%88%90) sectionを参考にして秘密鍵を作成します。
+[Mumbaiにスマートコントラクトをデプロイする方法](https://zenn.dev/tatsuyasusukida/articles/mumbai-smart-contract)の記事の[秘密鍵の作成](https://zenn.dev/tatsuyasusukida/articles/mumbai-smart-contract#%E7%A7%98%E5%AF%86%E9%8D%B5%E3%81%AE%E4%BD%9C%E6%88%90)セクションを参考にして秘密鍵を作成します。
 
 
 
