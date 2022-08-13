@@ -77,8 +77,8 @@ cd how-to-create-your-own-erc20-token
 mkdir contracts scripts
 touch contracts/SusukidaCoin.sol scripts/deploy.js .env hardhat.config.js
 npm init -y
-npm install --save @openzeppelin/contracts dotenv
-npm install --save-dev @nomiclabs/hardhat-ethers hardhat
+npm install --save @openzeppelin/contracts
+npm install --save-dev @nomiclabs/hardhat-ethers dotenv ethers hardhat
 ```
 
 
