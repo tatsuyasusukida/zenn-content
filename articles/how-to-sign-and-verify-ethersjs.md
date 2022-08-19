@@ -77,3 +77,36 @@ Signボタンの直後にVerified!とメッセージが表示されることを�
 [web3.jsを使ってMetaMaskで署名してNode.jsで検証する方法](https://zenn.dev/tatsuyasusukida/articles/how-to-sign-and-verify-using-web3js)
 
 途中でethers.jsを使いたくなってこの記事を投稿した次第です。
+
+### web3.jsとethers.jsの比較
+
+web3.jsとethers.jsの署名の手順についてはそれぞれ下記の通りです。
+
+```js:web3js-sign.js
+const web3 = new Web3(window.ethereum)
+const message = 'message'
+const [address] = await web3.eth.personal.getAccounts()
+const password = ''
+const signature = await web3.eth.personal.sign(message, address, password)
+```
+
+```js:ethers-sign.js
+const provider = new ethers.providers.Web3Provider(window.ethereum)
+const message = 'message'
+const signer = await provider.getSigner()
+const signature = await signer.signMessage(message)
+```
+
+また、web3.jsとethers.jsの検証の手順についてはそれぞれ下記の通りです。
+
+```js:web3js-verify.js
+const web3 = new Web3()
+const address = web3.eth.accounts.recover(message, signature)
+```
+
+```js:ethers-verify.js
+const digest = ethers.utils.hashMessage(message)
+const actual = ethers.utils.recoverAddress(digest, signature)
+```
+
+ご覧のとおり署名と検証の手順は両者であまり違いがないのでどちらを使っても良いと思います。
