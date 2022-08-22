@@ -11,7 +11,7 @@ published: true
 この記事ではweb3.jsを使ってフロントエンドのMetaMaskで署名してバックエンドのNode.jsで検証する方法について紹介します。この記事の関連リソースを下記に示します。
 
 - [ソースコード](https://github.com/tatsuyasusukida/how-to-sign-and-verify-using-web3js)
-
+- [ethers.js版](https://zenn.dev/tatsuyasusukida/articles/how-to-sign-and-verify-using-ethersjs)
 
 
 ## コーディングの準備
@@ -22,6 +22,7 @@ published: true
 npx create-next-app --typescript how-to-sign-and-verify-using-web3js
 cd how-to-sign-and-verify-using-web3js
 touch pages/sign.tsx pages/api/verify.ts
+npm install --save web3
 ```
 
 
