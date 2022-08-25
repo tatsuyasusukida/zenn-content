@@ -2,7 +2,7 @@
 title: "MySQLでprisma migrate devが失敗する"
 emoji: "🦋"
 type: "tech"
-topics: ["javascript", "webpack"]
+topics: ["mysql", "prisma", "database"]
 published: true
 ---
 
