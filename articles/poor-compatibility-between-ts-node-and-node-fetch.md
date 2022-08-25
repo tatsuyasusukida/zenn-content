@@ -146,4 +146,4 @@ Node.jsのv18からはデフォルトでfetchが使用できます。
 
 [Releases | Node.js](https://nodejs.org/en/about/releases/)
 
-2022年11月以降はts-nodeとnode-fetchの相性が悪さに悩まされることは無くなりそうです。
+2022年11月以降はts-nodeとnode-fetchの相性の悪さに悩まされることは無くなりそうです。
