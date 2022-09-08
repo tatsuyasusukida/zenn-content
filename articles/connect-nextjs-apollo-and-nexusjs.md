@@ -28,7 +28,7 @@ npm install --save apollo-server-micro graphql nexus
 mkdir api
 touch api/schema.ts
 mkdir api/graphql
-touch api/grqphql/index.ts
+touch api/graphql/index.ts
 touch api/graphql/post.ts
 touch pages/api/graphql.ts
 ```
