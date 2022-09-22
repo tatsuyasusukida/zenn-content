@@ -15,6 +15,10 @@ published: true
 
 収録自体は成功したのですが、何度か収録を繰り返すと音声が入らなかったり最初の方に黒い画面が入ったりする現象が発生し、現状では原因も回避方法もわかっていません。このような未完成な状態で公開するのも恐縮ですが、再現手順の記録のために記事にまとめようと思います。
 
+【追記｜2022年9月22日】
+現象を回避する方法に関する記事を投稿しました。
+[Flutterで動画収録時にiOS不具合を回避する方法](https://zenn.dev/tatsuyasusukida/articles/how-to-avoid-flutter-ios-video-recording-bug)
+
 
 
 ## コーディングの準備
@@ -86,3 +90,11 @@ iOS実機でアプリが起動してVideo recorder screenが表示されたら�
 ## おわりに
 
 CameraControllerを使い捨て（一度動画を収録したら廃棄する）にすることで現象を回避できるかも知れませんが現時点では未検証です。まだFlutterを使いはじめたばかりなので何とも言えませんが、カメラなどを使おうとしてハマってしまうと問題解決が難しい感じがしたので開発前の検証が重要だと感じました。Flutter自体は素晴らしいと思うのでSwiftUIやJetpack Composeと並行して学習を続けたいと思います。
+
+
+
+## 追記｜2022年9月22日
+
+何度か収録を繰り返すと音声が入らなかったり最初の方に黒い画面が入ったりする現象を回避する方法に関する記事を投稿しました。
+
+[Flutterで動画収録時にiOS不具合を回避する方法](https://zenn.dev/tatsuyasusukida/articles/how-to-avoid-flutter-ios-video-recording-bug)
