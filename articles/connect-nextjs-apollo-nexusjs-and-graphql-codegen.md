@@ -157,8 +157,7 @@ http://localhost:3000/client にアクセスしてApolloのExplorerページに�
 
 ## おわりに
 
-Nexus.jsとGraphQL Code Generatorを併用することでバックエンド／フロントエンド両方のTypeScript型定義が自動生成されるのでとても便利です。なお、GraphQL Code Generator公式ドキュメントの[Guide: GraphQL Yoga / Apollo Server
-](https://www.the-guild.dev/graphql/codegen/docs/guides/graphql-server-apollo-yoga)ページによるとGraphQL Code Generator単体でもバックエンド／フロントエンド両方のTypeScript型定義を自動生成できます。「それならNexus.jsは必要なくない？」という感じもしますがNexus.jsを使うとスキーマの近くでリゾルバーを定義できる点や使用言語をTypeScriptに統一できる点にメリットを感じるのでNexus.jsを使用しています。
+Nexus.jsとGraphQL Code Generatorを併用することでバックエンド／フロントエンド両方のTypeScript型定義が自動生成されるのでとても便利です。なお、GraphQL Code Generator公式ドキュメントの[Guide: GraphQL Yoga / Apollo Server](https://www.the-guild.dev/graphql/codegen/docs/guides/graphql-server-apollo-yoga)ページによるとGraphQL Code Generator単体でもバックエンド／フロントエンド両方のTypeScript型定義を自動生成できます。「それならNexus.jsは必要なくない？」という感じもしますがNexus.jsを使うとスキーマの近くでリゾルバーを定義できる点や使用言語をTypeScriptに統一できる点にメリットを感じるのでNexus.jsを使用しています。
 
 この記事ではtsxファイルにGraphQLクエリを書いていますが公式ドキュメントによるとこの方法は推奨されず、別途graphqlファイルを用意するべきだとの記載があります。
 
