@@ -264,7 +264,6 @@ flowchart BT
   CommonA --> ModuleCommon
 ```
 
-
 この時点ではadd.jsが存在しないのでmodule-b/main.jsを実行できません。
 
 ```
