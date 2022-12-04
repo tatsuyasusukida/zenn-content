@@ -37,6 +37,7 @@ flowchart LR
   Relax --> Stress
   Stress -->|Yes| Http
   Stress -->|No| Relax
+  Http --> Relax
 ```
 
 ### リラックス傾向の評価
@@ -45,7 +46,7 @@ flowchart LR
 
 $$M = \sqrt{c_x^2 + c_y^2}$$
 
-ここで$c_x = t_1 + t_2 + ... + t_{N-1}$、$c_y = t_2 + t_3 + ... + t_N$、$t_n = 60 / h_n$です。
+ここで$c_x = t_1 + t_2 + ... + t_{N-1}$、$c_y = t_2 + t_3 + ... + t_N$、$t_n = \frac{60}{h_n}$です。
 
 ### 設定
 
