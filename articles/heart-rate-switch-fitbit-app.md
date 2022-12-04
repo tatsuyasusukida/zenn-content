@@ -3,7 +3,7 @@ title: "心拍スイッチFitbitアプリをリリースしました"
 emoji: "💗"
 type: "tech"
 topics: ["fitbit", "javascript", "ifttt", "iot"]
-published: false
+published: true
 ---
 
 ## はじめに
