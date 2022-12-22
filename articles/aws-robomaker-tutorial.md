@@ -3,16 +3,19 @@ title: "AWS RoboMaker でロボットのシミュレーションを実行する�
 emoji: "🤖"
 type: "tech"
 topics: ["aws", "robot"]
-published: false
+published: true
 ---
 
 ## この記事について
 
 4年ぶりくらいに [AWS RoboMaker](https://aws.amazon.com/robomaker/) を触ってみたところ公式ドキュメントの [Running your first simulation](https://docs.aws.amazon.com/robomaker/latest/dg/gettingstarted-first-sim.html) の説明があまり丁寧ではないので Hello World のシミュレーションを実行するのに3時間もかかってしまいました。この記事では他の方が時間を無駄にしないように AWS RoboMaker の Hello World を動かす方法について紹介します。
 
+![ロボットがY軸を中心にして回転している様子](/images/articles/aws-robomaker-tutorial/about-01.gif)
+
 この記事は下記のスクラップを整理して作成しましたので説明が不足している点などがありましたらスクラップをご参照ください。
 
 https://zenn.dev/tatsuyasusukida/scraps/b284d238faace6
+
 
 
 
@@ -34,10 +37,10 @@ pip3 install vcstool
 
 ## ソースコードの取得
 
-ターミナルで下記のコマンドを実行して Hello World の Git レポジトリをクローンし、vcstool を使って robot_wsソースコードをインポートします。
+ターミナルで下記のコマンドを実行して Hello World の Git リポジトリをクローンし、vcstool を使って robot_wsソースコードをインポートします。
 
 ```sh
-git clone https://github.com/aws-robotics/aws-robomaker-sample-application-helloworld.git helloworld 
+git clone https://github.com/aws-robotics/aws-robomaker-sample-application-helloworld.git helloworld
 cd helloworld
 vcs import robot_ws < robot_ws/.rosinstall
 vcs import simulation_ws < simulation_ws/.rosinstall
@@ -115,9 +118,9 @@ export ecruri=$account.dkr.ecr.$region.amazonaws.com
 
 
 
-## レポジトリの作成
+## リポジトリの作成
 
-ターミナルで下記のコマンドを実行して Amazon ECR（AWS のコンテナイメージ保管サービス）のレポジトリを作成します。
+ターミナルで下記のコマンドを実行して Amazon ECR（AWS のコンテナイメージ保管サービス）のリポジトリを作成します。
 
 ```sh
 aws ecr create-repository --repository-name $robotapp
@@ -126,30 +129,39 @@ aws ecr create-repository --repository-name $simapp
 
 
 
-## コンテナイメージのプッシュ
+## プッシュの準備
 
-ターミナルで下記のコマンドを実行してコンテナイメージをレポジトリにプッシュします。
+ターミナルで下記のコマンドを実行してコンテナイメージをプッシュする準備をします。
 
 ```sh
 docker tag $robotapp $ecruri/$robotapp
 docker tag $simapp $ecruri/$simapp
+```
+
+公式ドキュメントではタグ作成時に下記のように `:latest` を末尾につけていますが、お使いのシェルによっては `atest` に変換されて失敗する恐れがあるので `:latest` を末尾につけないようにします。
+
+```sh:失敗する恐れがあるので実行しない
+docker tag $robotapp $ecruri/$robotapp:latest
+docker tag $simapp $ecruri/$simapp:latest
+```
+
+
+
+## コンテナイメージのプッシュ
+
+ターミナルで下記のコマンドを実行してコンテナイメージをリポジトリにプッシュします。
+
+```sh
 aws ecr get-login-password --region $region | docker login --username AWS --password-stdin $ecruri
 docker push $ecruri/$robotapp
 docker push $ecruri/$simapp
-```
-
-公式ドキュメントではタグ作成時に下記のように `:latest` を末尾につけていますが、お使いのシェルによっては `atest` に変換されて失敗する可能性があるので `:latest` を末尾につけないようにします。
-
-```sh
-docker tag $robotapp $ecruri/$robotapp:latest
-docker tag $simapp $ecruri/$simapp:latest
 ```
 
 プッシュ完了後、ターミナルで下記のコマンドを実行して成功を確認します。
 
 ```sh
 aws ecr list-images --repository-name $simapp
-aws ecr list-images --repository-name $robotapp 
+aws ecr list-images --repository-name $robotapp
 ```
 
 実行結果を下記に示します。
@@ -165,7 +177,7 @@ $ aws ecr list-images --repository-name $simapp
     ]
 }
 
-$ aws ecr list-images --repository-name $robotapp 
+$ aws ecr list-images --repository-name $robotapp
 {
     "imageIds": [
         {
@@ -226,16 +238,30 @@ arn:aws:robomaker:ap-northeast-1:000000000000:simulation-application/my-sim-app/
 
 ## IAM ロールの作成
 
-シミュレーションの実行に必要となる IAM ロールを作成します。IAM ロールを作成するために下記の手順にしたがって適当なシミュレーションジョブを作成します。
+シミュレーションの実行に必要となる IAM ロールを作成します。IAM ロールを作成するためには下記の手順にしたがって適当なシミュレーションジョブを作成します。
 
-1. AWS の Web コンソールから RoboMaker のページにアクセスし、シミュレーションジョブの一覧ページへ移動する
+1. AWS の Web コンソールから RoboMaker のページにアクセスし、シミュレーションジョブの一覧ページへ移動する。
 2. シミュレーションジョブの一覧の右上にある「シミュレーションジョブの作成」をクリックしてシミュレーションジョブの設定ページへ移動する。
 3. シミュレーションジョブの詳細セクションで IAM ロールとして「新しいロールを作成する」を選択し、IAM ロール名として `MyServiceRoleForRoboMaker` など適当な名前を入力してからページ右下の「次へ」ボタンをクリックしてロボットアプリケーションを指定するページへ移動する。
 4. ロボットアプリケーションを選択し、起動コマンドに `/bin/bash, -c, sleep, 1` などを適当に入力してからページ右下の「次へ」ボタンをクリックしてシミュレーションアプリケーションを指定するページへ移動する。
 5. シミュレーションアプリケーションを選択し、起動コマンドに `/bin/bash, -c, sleep, 1` などを適当に入力してからページ右下の「次へ」ボタンをクリックして確認と作成ページへ移動する。
 6. ページ右下の「次へ」ボタンをクリックしてシミュレーションジョブを作成を開始する。
 
-上記の手順にしたがって作成したシミュレーションジョブはしばらくするとステータスが「失敗」になりますが、もし失敗にならなければ手動でキャンセルします。キャンセルを忘れた場合はシミュレーションが8時間実行されて高額な請求が発生する恐れがありますのでご注意ください。
+上記の手順にしたがって作成したシミュレーションジョブはしばらくするとステータスが「失敗」になりますが、もし失敗にならなければ手動でキャンセルします。キャンセルを忘れるとシミュレーションが8時間実行されて想定外のコストが発生する恐れがありますのでご注意ください。
+
+### 参考画像
+
+![](/images/articles/aws-robomaker-tutorial/role-01.png)
+
+![](/images/articles/aws-robomaker-tutorial/role-02.png)
+
+![](/images/articles/aws-robomaker-tutorial/role-03.png)
+
+![](/images/articles/aws-robomaker-tutorial/role-04.png)
+
+![](/images/articles/aws-robomaker-tutorial/role-05.png)
+
+![](/images/articles/aws-robomaker-tutorial/role-06.png)
 
 
 
@@ -315,4 +341,106 @@ aws robomaker create-simulation-job --cli-input-json file://create_simulation_jo
 ```
 
 
+
 ## シミュレーション結果の表示
+
+シミュレーション結果を表示するには下記の手順にしたがって gzclient に接続します。
+
+1. AWS の Web コンソールから RoboMaker のページにアクセスし、シミュレーションジョブの一覧ページへ移動する。
+2. シミュレーションジョブの一覧からステータスが実行中のシミュレーションジョブを探し、ID をクリックしてシミュレーションジョブの詳細ページへ移動する。
+3. シミュレーションアプリケーションツールのセクションにある gzclient の「接続」ボタンをクリックして gzclient に接続する。
+
+### 参考画像
+
+![](/images/articles/aws-robomaker-tutorial/visualize-01.png)
+
+![](/images/articles/aws-robomaker-tutorial/visualize-02.png)
+
+![](/images/articles/aws-robomaker-tutorial/visualize-03.gif)
+
+
+
+## シミュレーションジョブのキャンセル
+
+シミュレーションジョブの詳細ページの右上にある「アクション」ボタンをクリックするとメニューが表示されるのでメニューの中からキャンセルを選んでクリックします。キャンセルを忘れるとシミュレーションが1時間実行されて想定外のコストが発生する恐れがありますのでご注意ください。
+
+### 参考画像
+
+![](/images/articles/aws-robomaker-tutorial/cancel-01.png)
+
+
+
+## おわりに
+
+プッシュの準備のセクションでも説明しましたが、公式ドキュメントではタグ作成のコマンドを下記のように記載しています。
+
+```sh
+docker tag $robotapp $ecruri/$robotapp:latest
+docker tag $simapp $ecruri/$simapp:latest
+```
+
+私が使用している zsh では `$ecruri/$robotapp:latest` と `$ecruri/$simapp:latest` は下記のように展開されます。
+
+```
+000000000000.dkr.ecr.ap-northeast-1.amazonaws.com/robomaker-helloworld-robot-appatest
+000000000000.dkr.ecr.ap-northeast-1.amazonaws.com/robomaker-helloworld-sim-appatest
+```
+
+上記のように `app:latest` となるべき部分が `appatest` になってしまっています。その結果、`docker push $ecruri/$robotapp` などを実行しても存在しないリポジトリにプッシュしようとしているので当然失敗します。しかも表示されるメッセージが下記のようにわかりにくいので原因を特定するのに苦労しました。
+
+```
+Using default tag: latest
+The push refers to repository [000000000000.dkr.ecr.ap-northeast-1.amazonaws.com/robomaker-helloworld-robot-appatest]
+c57a785c3150: Retrying in 1 second
+2eaa8ffadd8a: Retrying in 1 second
+a32a5f670a07: Retrying in 1 second
+c17c7f190a63: Retrying in 1 second
+153fc307cedb: Retrying in 1 second
+807331bb8036: Waiting
+26f69778b765: Waiting
+5f70bf18a086: Waiting
+d95c3384b170: Waiting
+600b5d07f9c9: Waiting
+760a8168331a: Waiting
+aa598d36b395: Waiting
+ed3220a3c03e: Waiting
+7438ffc34197: Waiting
+59549ba6b7f5: Waiting
+06f8c1087691: Waiting
+5a21724f143a: Waiting
+ce86ca26af86: Waiting
+9c97d367910b: Waiting
+01ee26bfc3e7: Waiting
+eee4459cdfd6: Waiting
+45bbe3d22998: Waiting
+EOF
+```
+
+"ecr push retrying" で検索すると下記の Stack Overflow の記事がヒットしてパーミッションの設定を変更すると解決するとの回答がありますが、真の原因はプッシュ先のリポジトリが存在しないことなのでいくら設定を変更しても解決しません。
+
+https://stackoverflow.com/questions/70828205/pushing-an-image-to-ecr-getting-retrying-in-seconds
+
+結局は自分の不注意のせいですが貴重な1〜2時間を空費してしまったことが悔やまれます。他の方が私と同じミスをしないことを祈ります。
+
+
+
+## コメントをください
+
+現在、テック系メタバースの構築に関わらせてもらっており、[A-Frame](https://aframe.io/) か [Unity](https://unity.com/) を使って下記のようなVRのWebコンテンツを制作したいと思っています。
+
+- Webページに(a)VR空間の表示部、(b)コードの入力部、(c)実行ボタンの3つがある
+- (a)VR空間の表示部にはロボットアームが表示される
+- (b)コードの入力部にはロボットアームを制御するためのコードを入力する
+- (c)実行ボタンを押すと入力されたコードに従ってロボットアームが動作する
+
+制作したVRコンテンツは構築中のテック系メタバースの機能を手軽に体験してもらい、利用を促進するために活用したいと考えています。コンテンツの制作にあたって下記のような課題があります。
+
+- ロボットアームのモデルをどうやって読み込むか？
+- 入力したコードをVR空間にどうやって送るか？
+- フロントエンド／バックエンドのどちらでシミュレーションを実行するか？
+- 実行ボタンを押してから結果が表示されるまでの時間をどうやって短縮するか？
+- 悪意のあるコードへの対策をどうするか？
+
+フロントエンドで完結できれば理想的ですが、ロボットアームの制御には C や C++ などを利用すると思われるのでバックエンドも必要と予想しています。シミュレーションの完成度を高めようとするほどシミュレーション結果が表示されるまでの時間が長くなるので何かを妥協する必要がありますが、妥協しすぎるとバーチャルとリアルの乖離が大きくなるのでバランスが難しいです。
+
+この記事をお読みの方の中でVRコンテンツ制作の経験や知見をお持ちの方がいましたらご指導をいただけますよう何卒よろしくお願い申し上げます。
