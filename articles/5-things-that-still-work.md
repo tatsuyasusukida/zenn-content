@@ -1,7 +1,7 @@
 ---
 title: "長く役立っている学び5選"
 emoji: "🖐"
-type: "idea"
+type: "tech"
 topics: ["git", "docker", "web", "oauth", "markdown"]
 published: true
 ---
