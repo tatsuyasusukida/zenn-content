@@ -3,7 +3,7 @@ title: "A-Frameを使ってロボットアームをVR空間に表示する方法
 emoji: "🦾"
 type: "tech"
 topics: ["aframe", "vr", "robot"]
-published: false
+published: true
 ---
 
 ## この記事について
