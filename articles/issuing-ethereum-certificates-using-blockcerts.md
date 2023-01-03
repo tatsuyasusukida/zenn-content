@@ -3,7 +3,7 @@ title: "Blockcerts を使って Ethereum ブロックチェーン証明書を発
 emoji: "🪪"
 type: "tech"
 topics: ["blockcerts", "ethereum", "blockchain", "certificate", "gcp"]
-published: false
+published: true
 ---
 
 ## この記事について
@@ -535,7 +535,7 @@ https://zenn.dev/tatsuyasusukida/articles/how-to-mint-erc721-token
 
 証明書と NFT の発行にはそれぞれ別のブロックチェーンを使用して大丈夫なので例えば証明書には Bitcoin、NFT には Ethereum ということもできます。千葉工業大学の事例では証明書には Ethereum、NFT には Polygon を使っています。この記事では Ethereum 証明書を発行しましたが機会があれば [GetBlock](https://getblock.io/) を使って Bitcoin 証明書を発行する記事を書いてみたいと思います。
 
-最後になりますがこの記事を作成するにあたって [PitPa](https://zenn.dev/p/sakazuki_xyz) さんの下記のリポジトリにとても助けられたのこの場を借りて紹介します。このリポジトリが無ければ途中で挫折してしまっていたと思うので深く感謝申し上げます。
+最後になりますがこの記事を作成するにあたって [PitPa](https://zenn.dev/p/sakazuki_xyz) さんの [nft-vc](https://github.com/pitpa/nft-vc) のリポジトリにとても助けられたので下記にリンクを貼ります。このリポジトリが無ければ途中で挫折してしまっていたと思うのでこの場を借りて深く感謝申し上げます。
 
 https://github.com/pitpa/nft-vc
 
