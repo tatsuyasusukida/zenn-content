@@ -14,7 +14,7 @@ https://prtimes.jp/main/html/rd/p/000000017.000037448.html
 
 Blockcerts のブロックチェーン証明書を発行するには [cert-issuer](https://github.com/blockchain-certificates/cert-issuer) を使いますが [Quick start](https://github.com/blockchain-certificates/cert-issuer#quick-start-using-docker) があまり親切に書かれていないので初めての人には少し大変なのではないかと思います。恥ずかしい話ですが私は1通目の証明書を発行するまでに8時間くらい時間を溶かしてしまいました。
 
-この記事では Blockcerts をちょっと触ってみたい方が私と同じような失敗を繰り返さないように有効な Ethereum ブロックチェーン証明書を発行するまでの手順をなるべく丁寧に解説したいと思います。
+この記事では Blockcerts をちょっと触ってみたい方が私と同じような失敗を繰り返さないように Ethereum ブロックチェーン証明書を発行するまでの手順をなるべく丁寧に解説したいと思います。
 
 この記事は下記のスクラップをベースにしていますので説明不足な部分がありましたら恐れ入りますがご参照ください。
 
@@ -26,6 +26,7 @@ https://zenn.dev/tatsuyasusukida/scraps/67bc1139e5410e
 
 この記事では下記4点のセットアップ手順などについての説明を割愛しています。
 
+- [gcloud CLI](https://cloud.google.com/sdk/gcloud?hl=ja) がインストールされていること
 - [MetaMask](https://metamask.io/) がインストールされていること
 - [Alchemy](https://www.alchemy.com/) のアカウントを持っていること
 - [Goerli Faucet](https://goerlifaucet.com/) などからテスト用の ETH を貰っていること
@@ -33,6 +34,7 @@ https://zenn.dev/tatsuyasusukida/scraps/67bc1139e5410e
 
 この記事で解説する手順を試してみる場合は下記を参考にして準備をお願いします。
 
+- gcloud CLI については [gcloud CLI をインストールする](https://cloud.google.com/sdk/docs/install?hl=ja)が参考になります。
 - MetaMask は [Chrome Web ストア](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn) からインストールできます。
 - Alchemy と Goerli Faucet の使い方については [ERC-20トークンを発行する方法](https://zenn.dev/tatsuyasusukida/articles/how-to-create-your-own-erc20-token) の記事で紹介しています。
 - Terraform については [Install Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli) が参考になります。Mac の場合は Homebrew を使うと下記のコマンド実行だけで簡単にインストールできます。
@@ -257,7 +259,7 @@ node convert.js key_file.txt
 | id | blockcerts-20230104 | Cloud Storage バケット名 |
 | service[0].serviceEndpoint | blockcerts-20230104 | Cloud Storageバケット名 |
 | verificationMethod[0].controller | blockcerts-20230104 | Cloud Storageバケット名 |
-| verificationMethod[0].publicKeyJwk | {"kty": ... npx4"} | JWK 公開鍵 |
+| verificationMethod[0].publicKeyJwk | {"kty": "EC", ... npx4"} | JWK 公開鍵 |
 
 Cloud Storage バケット名には例えば "blockcerts-" + 日付8桁を使います（バケットについては後から作成します）。JWK 公開鍵には `node convert.js key_file.txt` の出力結果を使います。
 
@@ -280,7 +282,7 @@ Cloud Storage バケット名には例えば "blockcerts-" + 日付8桁を使い
   "email": "blockcerts@loremipsum.co.jp",
   "publicKey": [
     {
-      "id": "ecdsa-koblitz-pubkey:0x1234567890123456789012345678901234567890"
+      "id": "ecdsa-koblitz-pubkey:0x063Eae33729EdB89FaadFDe5c813d4A06d176E4c"
     }
   ]
 }
@@ -291,7 +293,7 @@ Cloud Storage バケット名には例えば "blockcerts-" + 日付8桁を使い
 | パス | 変更部分 | 内容 |
 | ---- | ---- | ---- |
 | id | blockcerts-20230104 | Cloud Storage バケット名 |
-| publicKey[0].id | 0x1234 ... 7890 | Ethereum 公開鍵 |
+| publicKey[0].id | 0x63Ea ... 6E4c | Ethereum 公開鍵 |
 
 Cloud Storage バケット名には DID ドキュメントと同じものを使います。Ethereum 公開鍵については MetaMask からコピー＆ペーストします。こちらは秘密鍵ではなく公開鍵ですので間違えないようにご留意ください。
 
@@ -348,7 +350,7 @@ resource "google_storage_bucket_object" "profile" {
 
 ```ini:terraform.tfvars
 project         = "xxxxxxxx"
-bucket_name     = "loremipsumcojp-cert-issuer-20221229"
+bucket_name     = "blockcerts-20230104"
 bucket_location = "ASIA-NORTHEAST1"
 ```
 
@@ -357,13 +359,19 @@ main.tf についてはそのままで OK ですが terraform.tfvars につい�
 | パス | 変更部分 | 内容 |
 | ---- | ---- | ---- |
 | project | xxxxxxxx | GCP のプロジェクト ID |
-| bucket_name | xxxxxxxx | Cloud Storage バケット名 |
+| bucket_name | blockcerts-20230104 | Cloud Storage バケット名 |
 
 GCP のプロジェクト ID についてはターミナルで `gcloud config get-value project` 実行して取得できます。Cloud Storage バケット名には DID + Profile ドキュメントと同じものを使います。terraform.tfvars を変更したらターミナルで下記のコマンドを実行してバケットを作成します。
 
 ```sh
 terraform init
 terraform apply
+```
+
+Terraform で GCP を初めて操作する場合は下記コマンドの実行が必要かも知れません。
+
+```sh
+gcloud auth application-default login
 ```
 
 バケットを作成したら DID + Profile ドキュメントの URL にアクセスできるかを確認します。URL の例を下記に示します。
@@ -411,7 +419,7 @@ terraform apply
 cert-issuer への入力をまとめた設定ファイルを作成します。エディタで conf.ini を開いて下記の内容を入力します。
 
 ```ini:conf.ini
-issuing_address = 0x1234567890123456789012345678901234567890
+issuing_address = 0x063Eae33729EdB89FaadFDe5c813d4A06d176E4c
 verification_method = did:web:blockcerts-20230104.storage.googleapis.com#key-1
 usb_name=.
 key_file=key_file.txt
@@ -430,7 +438,7 @@ no_safe_mode
 
 | パス | 変更部分 | 内容 |
 | ---- | ---- | ---- |
-| issuing_address | 0x1234 ... 7890 | Ethereum 公開鍵 |
+| issuing_address | 0x063E ... 6E4c | Ethereum 公開鍵 |
 | verification_method | blockcerts-20230104 | Cloud Storageバケット名 |
 | unsigned_certificates_dir | /Users/ ... /blockcerts/ | 作業ディレクトリ |
 | blockchain_certificates_dir | /Users/ ... /blockcerts/ | 作業ディレクトリ |
@@ -456,27 +464,27 @@ WARNING - Your app is configured to skip the wifi check when the USB is plugged 
 INFO - This run will try to issue on the ethereum_goerli chain
 INFO - Set cost constants to recommended_gas_price=20000000000.000000, recommended_gas_limit=25000.000000
 INFO - Processing 1 certificates
-INFO - Processing 1 certificates under work path=/Users/susukida/workspace/blockcerts/data/work
-INFO - Getting balance with EthereumRPCProvider: 198279040000000000
+INFO - Processing 1 certificates under work path=/Users/susukida/workspace/web3/blockcerts3/data/work
+INFO - Getting balance with EthereumRPCProvider: 193899923516198863
 INFO - Total cost will be 500000000000000 wei
 INFO - Starting finalizable signer
 WARNING - app is configured to skip the wifi check when the USB is plugged in. Read the documentation to ensure this is what you want, since this is less secure
 INFO - Stopping finalizable signer
 WARNING - app is configured to skip the wifi check when the USB is plugged in. Read the documentation to ensure this is what you want, since this is less secure
-INFO - here is the op_return_code data: f4906de7db4f9a826b5998472f51eaac762d429b29b6c2496f38870a477929d9
+INFO - here is the op_return_code data: 532bbb70882b4186eeaaf427db152546194ea5463f415d15db5e7d0320a82238
 INFO - Fetching nonce with EthereumRPCProvider
 INFO - Starting finalizable signer
 WARNING - app is configured to skip the wifi check when the USB is plugged in. Read the documentation to ensure this is what you want, since this is less secure
 INFO - Stopping finalizable signer
 WARNING - app is configured to skip the wifi check when the USB is plugged in. Read the documentation to ensure this is what you want, since this is less secure
-INFO - signed Ethereum trx = f884048504a817c8008261a894deaddeaddeaddeaddeaddeaddeaddeaddeaddead80a0f4906de7db4f9a826b5998472f51eaac762d429b29b6c2496f38870a477929d92da01b0801ad15681457103aff952fc6a1a6b327b8eb1840455c37fec07609a6cccca068922ac353d38527ed5c5c68a02d73c740cc95efd1d0a75172af29317cb32af5
+INFO - signed Ethereum trx = f8840f8504a817c8008261a894deaddeaddeaddeaddeaddeaddeaddeaddeaddead80a0532bbb70882b4186eeaaf427db152546194ea5463f415d15db5e7d0320a822382ea06168f2009bf64267b0827bdcb97caf1348fd1d1c80471b831fae5c17cf45909fa052452c1cfbabd5073970e27006bb98297901440d70ac622a9b2101e8bc933ca4
 INFO - verifying ethDataField value for transaction
 INFO - verified ethDataField
 INFO - Broadcasting transaction with EthereumRPCProvider
-INFO - Broadcasting succeeded with method_provider=<cert_issuer.blockchain_handlers.ethereum.connectors.EthereumRPCProvider object at 0x7fc1e0d04e50>, txid=0xca8732ae20f0e67c8091af0b83055f5e21a32776c5df7f15fa2da25743320a7e
-INFO - merkle_json: {'path': [], 'merkleRoot': 'f4906de7db4f9a826b5998472f51eaac762d429b29b6c2496f38870a477929d9', 'targetHash': 'f4906de7db4f9a826b5998472f51eaac762d429b29b6c2496f38870a477929d9', 'anchors': ['blink:eth:goerli:0xca8732ae20f0e67c8091af0b83055f5e21a32776c5df7f15fa2da25743320a7e']}
-INFO - Broadcast transaction with txid 0xca8732ae20f0e67c8091af0b83055f5e21a32776c5df7f15fa2da25743320a7e
-INFO - Your Blockchain Certificates are in /Users/susukida/workspace/blockcerts/data/blockchain_certificates
+INFO - Broadcasting succeeded with method_provider=<cert_issuer.blockchain_handlers.ethereum.connectors.EthereumRPCProvider object at 0x7f7a30c05c90>, txid=0x79c6946021f40978db7902e3c5d0e28691ef14ec5a3bc051340e11f0b10ba438
+INFO - merkle_json: {'path': [], 'merkleRoot': '532bbb70882b4186eeaaf427db152546194ea5463f415d15db5e7d0320a82238', 'targetHash': '532bbb70882b4186eeaaf427db152546194ea5463f415d15db5e7d0320a82238', 'anchors': ['blink:eth:goerli:0x79c6946021f40978db7902e3c5d0e28691ef14ec5a3bc051340e11f0b10ba438']}
+INFO - Broadcast transaction with txid 0x79c6946021f40978db7902e3c5d0e28691ef14ec5a3bc051340e11f0b10ba438
+INFO - Your Blockchain Certificates are in /Users/susukida/workspace/web3/blockcerts3/data/blockchain_certificates
 ```
 
 発行されたブロックチェーン証明書は data/blockchain_certificates/my_certificate.json に出力されます。出力される内容の例は下記の通りで `proof` フィールドが追加されたことがわかります。
@@ -488,21 +496,16 @@ INFO - Your Blockchain Certificates are in /Users/susukida/workspace/blockcerts/
     "https://w3id.org/blockcerts/v3"
   ],
   "id": "urn:uuid:bbba8553-8ec1-445f-82c9-a57251dd731c",
-  "type": [
-    "VerifiableCredential",
-    "BlockcertsCredential"
-  ],
+  "type": ["VerifiableCredential", "BlockcertsCredential"],
   "issuer": "did:web:blockcerts-20230104.storage.googleapis.com",
   "issuanceDate": "2023-01-04T00:00:00Z",
-  "credentialSubject": {
-    "id": "did:example:ebfeb1f712ebc6f1c276e12ec21"
-  },
+  "credentialSubject": { "id": "did:example:ebfeb1f712ebc6f1c276e12ec21" },
   "proof": {
     "type": "MerkleProof2019",
-    "created": "2023-01-04T00:00:00.000000",
-    "proofValue": "z7veGu1qoKR3AS5M3xfNxYMVGUCxFzaEQ5NkRWDGTowFPyL2gB7vtCVDfK2e4oETN19HnnqmXL3CS2qpMgnWe2XUHCVN7ufHArBc54QVVk2XouWzakWMU83iHnAsk186DuvJv5vLXN2p9bFXRcwFTfqxkyzDL9E8G8CEZ43X9HnFNz6Yz38U4ypGt6XbmKM7EnLTK5NaKRkHrQehPyRfFCFhjBEhgdT9QTHf56PxwqmyF7Q8Gwf3MEZwbu5SNst58qSvRFQch7zaW1ZDw85Zqk1uMGJBwomRnwPtgmaKknR6rn3Pd4FMYp",
+    "created": "2023-01-04T08:01:04.835361",
+    "proofValue": "z7veGu1qoKR3AS5Aiy3XdQRe4xfNEwhfknt79YnR58urSqG8fq3YCVtqRZaq1uENWydaoneQ6Gmsz52Pp5QDMXT3695ic2Ba8L43NT1Nwh49r6ESPRhyhquSiULTTDRPrU1DLfk3aNjw8taeF9EEYps1WjT4N7mZDg2WbL9dmx3sYrJpUNXX5XJohpXi3LrqEbEej18ziHXQpDpEsFzfa7wGJ1P7N2Re8qorUw2kLVCCxPP96WLs8GvvhqcyQ3uLZLT2TYVPE3pEJmW4CLGw4NWWwDRH5gGz5F44cQbtr1DRZWLC5JnATy",
     "proofPurpose": "assertionMethod",
-    "verificationMethod": "did:example:1234"
+    "verificationMethod": "did:web:blockcerts-20230104.storage.googleapis.com#key-1"
   }
 }
 ```
@@ -523,7 +526,7 @@ INFO - Your Blockchain Certificates are in /Users/susukida/workspace/blockcerts/
 
 ## おわりに
 
-冒頭で紹介した千葉工業大学の事例では下記のステップで学習歴証明書を NFT として発行しています。
+この記事ではブロックチェーン証明書の発行手順しか扱いませんでしたが、冒頭で紹介した千葉工業大学の事例では下記のステップで学習歴証明書を NFT として発行しています。
 
 1. ブロックチェーン証明書を発行して IPFS に保存
 2. IPFS の CID を含む URL を NFT メタデータの `external_url` として記録
@@ -533,10 +536,8 @@ NFT（ERC-721トークン）を発行する方法については下記の記事�
 
 https://zenn.dev/tatsuyasusukida/articles/how-to-mint-erc721-token
 
-証明書と NFT の発行にはそれぞれ別のブロックチェーンを使用して大丈夫なので例えば証明書には Bitcoin、NFT には Ethereum ということもできます。千葉工業大学の事例では証明書には Ethereum、NFT には Polygon を使っています。この記事では Ethereum 証明書を発行しましたが機会があれば [GetBlock](https://getblock.io/) を使って Bitcoin 証明書を発行する記事を書いてみたいと思います。
+証明書と NFT の発行にはそれぞれ別のブロックチェーンを使用して大丈夫なので例えば証明書には Bitcoin、NFT には Ethereum ということもできます。千葉工業大学の事例では証明書には Ethereum、NFT には Polygon を使っています。この記事では Ethereum 証明書を発行しましたが機会があれば Bitcoin 証明書を発行する記事を書いてみたいと思います。
 
 最後になりますがこの記事を作成するにあたって [PitPa](https://zenn.dev/p/sakazuki_xyz) さんの [nft-vc](https://github.com/pitpa/nft-vc) のリポジトリにとても助けられたので下記にリンクを貼ります。このリポジトリが無ければ途中で挫折してしまっていたと思うのでこの場を借りて深く感謝申し上げます。
 
 https://github.com/pitpa/nft-vc
-
-
