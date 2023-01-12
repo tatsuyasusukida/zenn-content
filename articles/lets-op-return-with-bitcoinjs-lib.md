@@ -3,7 +3,7 @@ title: "bitcoinjs-lib で OP_RETURN しようぜ！"
 emoji: "😎"
 type: "tech"
 topics: ["typescript", "bitcoin", "ブロックチェーン", "opreturn"]
-published: false
+published: true
 ---
 
 ## この記事について
@@ -273,7 +273,11 @@ OP_RETURN は Bitcoin Core 0.9 で導入されましたが Bitcoin 自体は OP_
 > 
 > Storing arbitrary data in the blockchain is still a bad idea; it is less costly and far more efficient to store non-currency data elsewhere.
 
-推奨されていない一方で OP_RETURN はブロックチェーン証明書の [Blockcerts](https://www.blockcerts.org/) や分散IDの [ION](https://identity.foundation/ion/) にも応用されており、非通貨データをブロックチェーンに書き込むことには一定のニーズがあります。ION のようにデータの大部分を [IPFS](https://ipfs.tech/) に格納し、参照（CID）をブロックチェーンに書き込む方法は汎用性が高く、他の用途でも使えそうです。
+推奨されていない一方で OP_RETURN はブロックチェーン証明書の [Blockcerts](https://www.blockcerts.org/) や分散IDの [ION](https://identity.foundation/ion/) にも応用されており、非通貨データをブロックチェーンに書き込むことには一定のニーズがあります。ION のようにデータの大部分を [IPFS](https://ipfs.tech/) に格納し、参照（CID）のみをブロックチェーンに書き込む方法はスマートなので他の用途でも使えそうです。
+
+Ethereum に比べると Bitcoin は汎用性が低いですが一方で 1 つのことをうまくやっているともいえます。目的に応じて最適な手段を選べるように Bitcoin についても深く学びたいと思います。Bitcoin について学ぶには [Mastering Bitcoin](https://github.com/bitcoinbook/bitcoinbook) がおすすめです。英語なら無料で読めます、太っ腹！
+
+https://github.com/bitcoinbook/bitcoinbook
 
 
 
