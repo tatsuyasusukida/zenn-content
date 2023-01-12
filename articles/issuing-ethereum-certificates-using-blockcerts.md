@@ -1,6 +1,6 @@
 ---
 title: "Blockcerts を使って Ethereum ブロックチェーン証明書を発行する方法"
-emoji: "🪪"
+emoji: "🎓"
 type: "tech"
 topics: ["blockcerts", "ethereum", "blockchain", "certificate", "gcp"]
 published: true
