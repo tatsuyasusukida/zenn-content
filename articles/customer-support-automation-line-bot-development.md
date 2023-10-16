@@ -50,7 +50,7 @@ graph BT
   end
 
   subgraph GCP
-    Admin[管理システム] -->|読み書き| CloudSQL[(Cloud SQL)]
+    Admin[管理システム] -->|読み書き| CloudSQL[(データベース)]
     Bot[LINE ボット] -->|読み書き| CloudSQL
   end
 
@@ -106,8 +106,6 @@ LINE ボットとお客さまのやり取りは LINE 公式アカウント管理
 - クレーム
 - お金や商品の置き場所
 
-お客さまが各ボタンを押すと「> 配達日の確認」のようなプロンプトがお客さまの LINE メッセージとして送信されます。
-
 リッチメニューのイメージを下記に示します（実際にはボタンは 2 行 2 列で配置されます）。
 
 ```mermaid
@@ -120,11 +118,207 @@ graph LR
   end
 ```
 
+お客さまがボタンを押すと「> 配達日の確認」のようなプロンプトがお客さまの LINE メッセージとして送信されます。LINE ボットはプロンプトを受信するとメッセージ返信などのシーケンスを実行します。
+
 ### 配達日の確認
 
-LINE ボットは「> 配達日の確認」のプロンプトを受信すると配達日のカレンダーを返信します。カレンダーの生成には下記の記事を参考にして [Flex Message](https://developers.line.biz/ja/docs/messaging-api/using-flex-messages/) を使いました。
+LINE ボットが「> 配達日の確認」プロンプトを受信した場合のシーケンス図を下記に示します。
+
+```mermaid
+sequenceDiagram
+  actor Customer as お客さま
+  Customer->>LINE ボット: 「> 配達日の確認」プロンプト送信
+  LINE ボット->>データベース: 配達日の読み込み
+  LINE ボット->>Customer: 配達日カレンダーメッセージ返信
+  Note right of Customer: 当月と翌月の 2 つのカレンダーが送信されます。
+```
+
+カレンダー生成には下記の記事を参考にして [Flex Message](https://developers.line.biz/ja/docs/messaging-api/using-flex-messages/) を使いました。
 
 https://qiita.com/7kaji/items/69c790efc9ed8813fe73
 
 ![LINE トーク画面下部に 6 つのボタンから構成されるメニュー画像が表示されています。](/images/articles/customer-support-automation-line-bot-development/calendar.png)
-_上記の記事より引用_
+_Flex Message を使ったカレンダーメッセージの例（上記の記事より引用）_
+
+### 配達日のキャンセル
+
+LINE ボットが「> 次回配達のキャンセル」プロンプトを受信した場合のシーケンス図を下記に示します。
+
+```mermaid
+sequenceDiagram
+  actor Customer as お客さま
+  Customer->>LINE ボット: 「> 次回配達のキャンセル」プロンプト送信
+  LINE ボット->>データベース: 配達日の読み込み
+  LINE ボット->>Customer: ボタン付きメッセージ返信
+  Note right of Customer: 「次回キャンセル」「次々回キャンセル」の<br/>2 つのボタンが付きます。
+  Customer->>LINE ボット: キャンセルボタン押下
+  LINE ボット->>データベース: キャンセル情報の書き込み
+  LINE ボット->>Chatwork: 通知
+  LINE ボット->>Customer: 受付メッセージ返信
+```
+
+配達キャンセルが受付済みの場合はデータベースへのキャンセル情報の書き込みと Chatwork への通知は行わず、下記のような受付メッセージを返信して案内します。
+
+> ● 月 ● 日の配達キャンセルについては既に受付が完了しています。配達キャンセルを取り消す場合はトークにてお知らせください。
+
+### クレーム
+
+LINE ボットが「> クレーム」プロンプトを受信した時のシーケンス図を下記に示します。
+
+```mermaid
+sequenceDiagram
+  actor Customer as お客さま
+  Customer->>LINE ボット: 「> クレーム」プロンプト送信
+  LINE ボット->>Customer: ボタン付きメッセージ返信
+  Note right of Customer: 「花が傷んでいた」「商品が届いていない」<br/>「その他」の 3 つのボタンが付きます。
+  Customer->>LINE ボット: 「花が傷んでいた」ボタン押下
+  LINE ボット->>Chatwork: 通知
+  LINE ボット->>Customer: 受付メッセージ返信
+```
+
+お客さまが「その他」ボタンを押した場合のシーケンスはもう少し複雑です。
+
+```mermaid
+sequenceDiagram
+  actor Customer as お客さま
+  Customer->>LINE ボット: 「> クレーム」プロンプト送信
+  LINE ボット->>Customer: ボタン付きメッセージ返信
+  Note right of Customer: 「花が傷んでいた」「商品が届いていない」<br/>「その他」の 3 つのボタンが付きます。
+  Customer->>LINE ボット: 「その他」ボタン押下
+  LINE ボット->>データベース: その他の内容入力待ちフラグを ON にする
+  LINE ボット->>Customer: 入力案内メッセージ返信
+  Customer->>LINE ボット: その他の内容をトークで入力
+  LINE ボット->>Chatwork: 通知
+  LINE ボット->>データベース: その他の内容入力待ちフラグを OFF にする
+  LINE ボット->>Customer: 受付メッセージ返信
+```
+
+その他の内容入力待ちフラグが ON の状態でお客さまからトークを受信した場合、LINE ボットは「お客さまからその他の内容が入力された」と見なしてその後のシーケンスを実行します。
+
+### お金や商品の置き場所
+
+LINE ボットが「> お金や商品の置き場所」プロンプトを受信した時のシーケンス図を下記に示します。
+
+```mermaid
+sequenceDiagram
+  actor Customer as お客さま
+  Customer->>LINE ボット: 「> お金や商品の置き場所」プロンプト送信
+  LINE ボット->>Customer: ボタン付きメッセージ返信
+  Note right of Customer: 「お金の置き場所」「商品の置き場所」<br/>「その他」の 3 つのボタンが付きます。
+  Customer->>LINE ボット: 「お金の置き場所」ボタン押下
+  LINE ボット->>Customer: ボタン付きメッセージ返信
+  Note right of Customer: 「ポストの中」「牛乳箱の中」<br/>「その他」の 3 つのボタンが付きます。
+  Customer->>LINE ボット: 「ポストの中」ボタン押下
+  LINE ボット->>Chatwork: 通知
+  LINE ボット->>Customer: 受付メッセージ返信
+```
+
+「> お金の置き場所」プロンプトと「> 商品の置き場所」プロンプトの 2 つに分けても良かったかも知れませんが、リッチメニューのデザインの関係でボタンが 4 つだと収まりが良かったのでプロンプトを 1 つにまとめることにしました。
+
+お客さまが「その他」ボタンを押した場合のシーケンスについては「> クレーム」プロンプトの場合と同じように対処しています。
+
+## 使用技術
+
+### LINE ボット
+
+LINE ボットの開発には NestJS + Prisma + TypeScript を使用しました。LINE ボットは Webhook 開発になるので Web サーバーを開発できるプログラミング言語やフレームワークであれば何でも利用可能です。
+
+LINE Messaging API については公式 SDK が提供されており、主に TypeScript の型定義を使わせてもらいました。
+
+https://github.com/line/line-bot-sdk-nodejs
+
+Chatwork API については SDK などは提供されていませんでしたが、API がシンプルなので公式ドキュメントを読んですぐに利用できました。
+
+https://developer.chatwork.com/docs
+
+### 管理システム
+
+管理システムの開発には Next.js + Prisma + TypeScript を使用しました。要件に Excel インポート／エクスポートがあったので xlsx という npm パッケージを使って実装しましたが、なかなクセが強くて苦労しました。
+
+https://www.npmjs.com/package/xlsx
+
+### 運用環境
+
+LINE ボットと管理システムの Web ホスティングには Cloud Run、データベースには GCP の Cloud SQL を使いました。NestJS と Next.js はいずれも Cloud Run のソースコードからのデプロイ機能に対応していてコマンド 1 つで公開や更新ができるので楽でした。
+
+https://cloud.google.com/run/docs/deploying-source-code?hl=ja
+
+## 開発のポイント
+
+### 技術検証
+
+LINE Messaging API と Chatwork API については使用するのが初めてだったので要件定義前に手を動かして試してみました。検証を通じてできないことや制約などを理解した上で設計・実装ができたのでスムーズに開発が進んだように感じます。検証の過程については下記の Zenn スクラップに記録していきました。
+
+https://zenn.dev/tatsuyasusukida/scraps/bf35b2746f549e
+
+https://zenn.dev/tatsuyasusukida/scraps/ddd6943976df8a
+
+### テスト
+
+LINE ボットはテストコードからプロンプトを受け取ると返信メッセージを LINE Messaging API に送信し、テストコードには HTTP の 200 OK レスポンスを返します。
+
+```mermaid
+graph LR
+  subgraph LINE 公式アカウント
+    LINE[LINE Messaging API]
+  end
+
+  subgraph ローカル
+    Bot -->|200 OK| テストコード
+    テストコード -->|プロンプト| Bot[LINE ボット]
+  end
+
+  Bot -->|返信メッセージ| LINE
+```
+
+このままだとテストしにくかったので LINE ボットにテストモード機能を設けて返信メッセージをテストコードに返すようにしました。なお、テストモードの ON / OFF は環境変数で切り替えられるようにしました。
+
+```mermaid
+graph TB
+  subgraph ローカル
+    Bot -->|返信メッセージ| テストコード
+    テストコード -->|プロンプト| Bot[LINE ボット｜テストモード ON]
+  end
+```
+
+### 友だち一覧の出力
+
+クライアントからの要望で LINE 友だち登録済みのお客さまは ID 連携なしですぐに LINE ボットを使えるようにすることが求められました。そのためには LINE 公式アカウントの友だち一覧（お客さまの氏名と LINE ID の対応表）を出力する必要があり、この作業になかなか苦戦しました。この作業で得られた知見については下記の記事にまとめました。
+
+https://zenn.dev/tatsuyasusukida/articles/line-friend-export
+
+## 実装前に知っておきたかったこと
+
+### ngrok
+
+ngrok はローカルのサーバーを外部に公開できるサービスです。ngrok を使うとローカルでは行えない Webhook の動作確認ができるようになります。
+
+https://ngrok.com/
+
+Cloudflare Tunnel という同じようなサービスもあります。
+
+https://www.cloudflare.com/ja-jp/products/tunnel/
+
+今回はその都度 GCP にデプロイしていたのでトライ＆エラーに時間がかかっていました。次に Webhook 開発をする時はどちらかを使ってみようと思います。
+
+### マルチキャストメッセージ
+
+LINE Messaging API では下記 5 つのメッセージタイプがあります。
+
+- 応答メッセージ
+- プッシュメッセージ
+- マルチキャストメッセージ
+- ナローキャストメッセージ
+- ブロードキャストメッセージ
+
+上記のうち LINE ID を指定してメッセージを送信できるのは 2 番目のプッシュメッセージと 3 番目のマルチキャストメッセージです。前者のプッシュメッセージは 1 人のユーザーに低遅延でメッセージを送るのに適しています。一方、後者のマルチキャストメッセージは複数のユーザーに同じメッセージを送るのに適しています。
+
+https://developers.line.biz/ja/reference/messaging-api/#send-multicast-message
+
+管理システムにメッセージ一斉送信の機能を実装するのにプッシュメッセージを使いましたが、明らかにマルチキャストメッセージを使うべきユースケースでした。次の機会があればマルチキャストメッセージを使おうと思います。
+
+## 開発コストを抑えるための工夫
+
+## 開発の期間・費用
+
+## おわりに
