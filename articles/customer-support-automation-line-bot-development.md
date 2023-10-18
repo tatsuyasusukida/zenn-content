@@ -1,9 +1,9 @@
 ---
-title: "[WIP]お問い合わせ対応自動化 LINE ボット開発の経験談"
+title: "お問い合わせ対応自動化 LINE ボット開発の経験談"
 emoji: "🤖"
 type: "tech"
 topics: ["line", "typescript", "gcp", "nestjs"]
-published: false
+published: true
 ---
 
 ## はじめに
