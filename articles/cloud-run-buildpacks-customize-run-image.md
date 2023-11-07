@@ -3,7 +3,7 @@ title: "Cloud Run で Buildpacks 使用時に実行イメージをカスタマ�
 emoji: "🔧"
 type: "tech"
 topics: ["cloudrun", "buildpacks"]
-published: false
+published: true
 ---
 
 ## この記事について
@@ -12,7 +12,7 @@ Cloud Run を使っていて実行イメージにちょっとした変更（例�
 
 https://cloud.google.com/docs/buildpacks/build-run-image?hl=ja
 
-ドキュメントが用意されているのはありがたいことですが、この記事の作成時点（2023 年 10 月）では書かれている説明の通りにやっても失敗します。色々と試した結果どうにか成功できたので、この記事ではその過程で得られた知見をまとめようと思います。
+ドキュメントが用意されているのはありがたいことですが、この記事の作成時点（2023 年 11 月）では書かれている説明の通りにやっても失敗します。色々と試した結果どうにか成功できたので、この記事ではその過程で得られた知見をまとめようと思います。
 
 ### Zenn スクラップ
 
@@ -52,9 +52,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   rm -rf /var/lib/apt/lists/*
 ```
 
-## 想定シナリオ
+## 検証手順
 
-以下、手順を説明するために次のようなシナリオを想定します。
+以下、次のようなシナリオを想定して検証手順を説明します。
 
 1. ImageMagick のバージョンを表示する Web サーバーを Node.js で作成
 2. Docker で ImageMagick をインストールした実行イメージをビルド
